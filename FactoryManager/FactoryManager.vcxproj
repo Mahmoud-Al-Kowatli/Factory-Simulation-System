@@ -124,11 +124,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Event.h" />
     <ClInclude Include="FactoryManager.h" />
     <ClInclude Include="Libraries.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="Order.h" />
     <ClInclude Include="OrdersManager.h" />
+    <ClInclude Include="Product.h" />
+    <ClInclude Include="ProductionFloor.h" />
+    <ClInclude Include="ProductUnit.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="WarehouseManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
@@ -136,7 +142,11 @@
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrdersManager.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="ProductionFloor.cpp" />
+    <ClCompile Include="ProductUnit.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="WarehouseManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
