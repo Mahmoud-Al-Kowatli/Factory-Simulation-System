@@ -41,7 +41,7 @@ One of the core features is the **Line Breakdown Recovery**:
 ---
 ## 🧐 Class Diagram |
 
-<img width="1778" height="1097" alt="105" src="https://github.com/user-attachments/assets/98d5d882-77d0-4de7-8d3b-f467c41d4ffa" />
+<img width="1778" height="1097" alt="107" src="https://github.com/user-attachments/assets/cdd5e82f-17c4-4ba9-a4ea-7a525017c26a" />
 
 ---
 
