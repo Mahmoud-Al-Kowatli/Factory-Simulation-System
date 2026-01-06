@@ -1,29 +1,19 @@
 #pragma once
 #include"Libraries.h"
 
-class MyClass
+class User
 {
 public:
-	MyClass();
-	~MyClass();
+	User();
+	~User();
 
-	void login() {
+	void login();
 
-	}
-
-	void logout() {
-
-	}
+	void logout();
 
 private:
 	string username;
 	string password;
 };
 
-MyClass::MyClass()
-{
-}
 
-MyClass::~MyClass()
-{
-}
