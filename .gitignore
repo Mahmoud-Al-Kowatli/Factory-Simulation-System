@@ -1,0 +1,14 @@
+# Ignore Visual Studio temporary files, build results, and user-specific files
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+../.vs/
+
+
+
+# Ignore Windows system files
+Thumbs.db
+ehthumbs.db
