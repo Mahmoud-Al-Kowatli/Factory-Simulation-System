@@ -6,7 +6,7 @@ obj/
 *.suo
 *.userprefs
 ../.vs/
-
+*.db
 
 
 # Ignore Windows system files
