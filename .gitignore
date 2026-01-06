@@ -1,4 +1,7 @@
-# Ignore Visual Studio temporary files, build results, and user-specific files
+# Ignore Visual Studio temporary files, build results, and user-specific files# Ignore build output folders
+x64/
+Debug/
+Release/
 .vs/
 bin/
 obj/
