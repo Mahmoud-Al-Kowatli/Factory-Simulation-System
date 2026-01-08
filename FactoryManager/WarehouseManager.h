@@ -6,13 +6,14 @@
 
 class WarehouseManager {
 private:
-    deque<Material> rawStorage;
+    unordered_map<int, deque<Material>> storageBins;
     unordered_map<int, int> inventoryCounts;
     unordered_map<int, ProductUnit> finishedGoods;
     unordered_map<int, Product> productCatalog;
 
 public:
-    void addProductToCatalog(Product p) { productCatalog[p.id] = p; }
-    Product getProductDetails(int id) { return productCatalog[id]; }
+    WarehouseManager();
+    void addProductToCatalog(Product p);
+    Product getProductDetails(int id);
     bool consumeMaterialsForOrder(int productID, int qty);
 };
