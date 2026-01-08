@@ -1,4 +1,3 @@
-#pragma once
 #include"Libraries.h"
 
 class User
@@ -12,8 +11,9 @@ public:
 	void logout();
 
 private:
-	string username;
-	string password;
+	//staic username&password 
+	string username = "Admin";
+	string password = "Admin123";
 };
 
 

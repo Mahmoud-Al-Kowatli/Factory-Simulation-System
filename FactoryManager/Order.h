@@ -13,7 +13,5 @@ public:
 
     void calculateValue();
     
-    bool operator<(const Order& other) {
-        return this->priority < other.priority;
-    }
+    bool operator<(const Order& other);
 };

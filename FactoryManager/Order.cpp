@@ -7,5 +7,5 @@ void Order::calculateValue() {
 }
 
 bool Order::operator<(const Order& other) {
-	return false;
+	return this->priority < other.priority;
 }

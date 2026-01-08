@@ -145,6 +145,7 @@
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="ProductionFloor.cpp" />
     <ClCompile Include="ProductUnit.cpp" />
+    <ClCompile Include="Source.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="WarehouseManager.cpp" />
   </ItemGroup>
