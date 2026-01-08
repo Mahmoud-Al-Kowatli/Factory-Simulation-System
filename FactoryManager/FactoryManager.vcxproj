@@ -139,7 +139,6 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="FactoryManager.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="OrdersManager.cpp" />

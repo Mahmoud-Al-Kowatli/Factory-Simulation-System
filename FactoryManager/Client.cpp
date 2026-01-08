@@ -2,12 +2,8 @@
 
 int Client::counter = 1;
 
-
-Client::Client(string name)
+Client::Client()
 {
-	//autmoatically assigns IDs to Clients everytime a new Client is created
-	this->id = counter++;
-	this->name = name;
 }
 
 Client::Client(string name)

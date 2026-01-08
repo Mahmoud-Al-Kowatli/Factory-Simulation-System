@@ -1,7 +1,9 @@
 #include "Product.h"
+#include"User.h"
+#include"Libraries.h"
 
 int main()
 {
-	time_t now = time(0);
-	cout << now;
+	User u1;
+	u1.login();
 }
