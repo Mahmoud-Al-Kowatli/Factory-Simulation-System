@@ -5,10 +5,12 @@
 
 class Order {
 
+public:
+    enum Priority{NORMAL = 1, VIP = 2, URGENT = 3};
+
 private:
     static int counter;
     int id;
-    int priority;
     time_t arrivalTime;
     int requiredQuantity;
     int clientID;
@@ -16,15 +18,20 @@ private:
     double totalValue;
     Client client;
     Product product;
+    Priority priority;
 
 public:
-
     double calculateValue();
 
     bool operator<(const Order& other);
 
-    Order(int priority, int requiredQuantity, Product product);
+    Order(Priority priority, int requiredQuantity, Product product);
 
+    int getID();
+
+    Priority getPriority();
+
+    void setPriority(Priority p);
 
 
 };

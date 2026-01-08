@@ -5,13 +5,8 @@
 
 int Order::counter = 1;
 
-Order::Order(int priority, int requiredQuantity, Product product)
+Order::Order(Priority priority, int requiredQuantity, Product product)
 {
-    /*
-    int clientID;
-    int productID;
-    double totalValue;
-    */
     this->product = product;
     this->productID;
     id = counter++;
@@ -30,5 +25,21 @@ double Order::calculateValue() {
 }
 
 bool Order::operator<(const Order& other) {
-    return this->priority < other.priority;
+    return priority < other.priority;
 }
+
+Order::Priority Order::getPriority() {
+    return priority;
+}
+
+void Order::setPriority(Priority p) {
+    priority = p;
+}
+
+int Order::getID() {
+
+    return id;
+}
+
+
+
