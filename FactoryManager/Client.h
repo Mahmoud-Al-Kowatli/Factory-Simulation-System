@@ -3,10 +3,12 @@
 
 class Client
 {
-	int id;
-	string name;
-	vector<int> orderHistoryIDs;
+    static int counter;
+    int id;
+    string name;
+    vector<int> orderHistoryIDs;
 public:
-	Client();
+    Client();
+    Client(string name);
+    int getID() const;
 };
-

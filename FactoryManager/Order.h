@@ -1,8 +1,12 @@
 #pragma once
-#include "Libraries.h"
+#include"Libraries.h"
+#include"Client.h"
+#include"Product.h"
 
 class Order {
-public:
+
+private:
+    static int counter;
     int id;
     int priority;
     time_t arrivalTime;
@@ -10,10 +14,17 @@ public:
     int clientID;
     int productID;
     double totalValue;
+    Client client;
+    Product product;
 
-    void calculateValue();
-    
-    bool operator<(const Order& other) {
-        return this->priority < other.priority;
-    }
+public:
+
+    double calculateValue();
+
+    bool operator<(const Order& other);
+
+    Order(int priority, int requiredQuantity, Product product);
+
+
+
 };

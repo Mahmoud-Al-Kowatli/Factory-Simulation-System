@@ -5,12 +5,11 @@
 
 class OrdersManager
 {
-	list<Order> receptionQueue;
-	unordered_map<int, list<Order>::iterator> receptionIndex;
-	priority_queue<Order> shippingQueue;
-	unordered_map<int, Client> clientsDatabase;
+    list<Order> receptionQueue;
+    unordered_map<int, list<Order>::iterator> receptionIndex;
+    priority_queue<Order> shippingQueue;
+    unordered_map<int, Client> clientsDatabase;
 public:
-	void registerClient(Client c);
-	void receiveOrder(Order o);
+    void registerClient(Client client);
+    void receiveOrder(Order order);
 };
-

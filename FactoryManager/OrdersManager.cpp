@@ -1,9 +1,11 @@
 #include "OrdersManager.h"
 
-void OrdersManager::registerClient(Client c)
+void OrdersManager::registerClient(Client client)
 {
+
 }
 
-void OrdersManager::receiveOrder(Order o)
+void OrdersManager::receiveOrder(Order order)
 {
+
 }

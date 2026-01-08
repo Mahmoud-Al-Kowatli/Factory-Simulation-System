@@ -1,19 +1,17 @@
-#pragma once
 #include"Libraries.h"
 
 class User
 {
 public:
-	User();
-	~User();
+    User();
+    ~User();
 
-	void login();
+    void login();
 
-	void logout();
+    void logout();
 
 private:
-	string username;
-	string password;
+    //staic username&password 
+    string username = "Admin";
+    string password = "Admin123";
 };
-
-
