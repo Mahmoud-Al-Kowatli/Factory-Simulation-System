@@ -10,11 +10,7 @@ class Event
     time_t timestamp;
 
     
-    Event::Event( string desc){
-        
-    }
+    Event(string desc);
 
-    Event::~Event(){
-
-    }
+    ~Event();
 };
