@@ -2,6 +2,8 @@
 
 int Product::counter = 0;
 
+unordered_map<int, Product> Product::productDatabase = {};
+
 const Product Product::OFFICER_CHAIR = Product("Officer Chair", 100, { {Material::FABRIC, 2}, {Material::SCREW, 12}, {Material::METAL_FRAME, 1} });
 
 const Product Product::WOODEN_DESK = Product("Wooden Desk", 80, { {Material::WOOD_PANELS, 3}, {Material::SCREW, 20}, {Material::METAL_FRAME, 1}, { Material::PAINT, 1 } });
@@ -20,6 +22,14 @@ Product::Product(string name, double unitPrice, vector<pair<Material, int>> requ
 	this->name = name;
 	this->unitPrice = unitPrice;
 	this->requirements = requirements;
+	auto atd = [=](const Product& product) {
+		productDatabase[product.getID()] = product;
+	};
+	atd(BOOKSHELF);
+	atd(DRAWER_CABINET);
+	atd(GAMING_DESK);
+	atd(OFFICER_CHAIR);
+	atd(WOODEN_DESK);
 }
 
 int Product::getID() const
@@ -35,5 +45,10 @@ vector<pair<Material, int>> Product::getRequirements()
 double Product::getPrice() const
 {
 	return unitPrice;
+}
+
+Product Product::getProduct(int id)
+{
+	return productDatabase[id];
 }
 

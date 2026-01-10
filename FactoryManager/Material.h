@@ -7,13 +7,16 @@ class Material
 	string name;
 	int quantity;
 	static int counter;
-	Material(string name, int quantity);
+	static unordered_map<int, Material> materialDatabase;
 
 public:
+	Material();
+	Material(string name, int quantity);
 	int getID() const;
 	string getName();
 	int getQuantity() const;
 	void setQuantity(int quantity);
+	Material getMaterial(int id);
 	static const Material SCREW;
 	static const Material METAL_FRAME;
 	static const Material FABRIC;
