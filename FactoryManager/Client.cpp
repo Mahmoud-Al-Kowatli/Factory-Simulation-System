@@ -2,7 +2,8 @@
 
 int Client::counter = 1;
 
-unordered_map<int, Client> Client::clientsDatabase = unordered_map<int, Client>();
+//initialization of the static member
+unordered_map<int, Client> Client::clientsDatabase = {};
 
 Client::Client()
 {
