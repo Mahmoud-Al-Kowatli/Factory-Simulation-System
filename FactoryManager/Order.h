@@ -33,5 +33,8 @@ public:
 
     void setPriority(Priority p);
 
+    Product getProduct();
+
+    int getRequiredQuantity();
 
 };

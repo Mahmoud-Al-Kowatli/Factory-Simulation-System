@@ -36,10 +36,17 @@ void Order::setPriority(Priority p) {
     priority = p;
 }
 
+Product Order::getProduct()
+{
+    return product;
+}
+
+int Order::getRequiredQuantity()
+{
+    return requiredQuantity;
+}
+
 int Order::getID() {
 
     return id;
 }
-
-
-
