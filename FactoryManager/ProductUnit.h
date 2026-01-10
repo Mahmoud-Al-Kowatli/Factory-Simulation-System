@@ -10,5 +10,6 @@ private:
     vector<Event> history;
 
 public:
+    ProductUnit(int unitId, int parentOrderID);
     void addEvent(string desc);
 };
