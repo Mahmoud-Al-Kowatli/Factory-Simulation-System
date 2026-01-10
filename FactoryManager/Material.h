@@ -13,6 +13,7 @@ public:
 	int getID() const;
 	string getName();
 	int getQuantity() const;
+	void setQuantity(int quantity);
 	static const Material SCREW;
 	static const Material METAL_FRAME;
 	static const Material FABRIC;

@@ -37,3 +37,8 @@ int Material::getQuantity() const
 {
 	return quantity;
 }
+
+void Material::setQuantity(int quantity)
+{
+	this->quantity = quantity;
+}
