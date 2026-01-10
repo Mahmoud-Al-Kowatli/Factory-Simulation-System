@@ -1,9 +1,5 @@
 #include "OrdersManager.h"
 
-void OrdersManager::registerClient(Client client)
-{
-	clientsDatabase[client.getID()] = client;
-}
 
 void OrdersManager::receiveOrder(Order order)
 {
@@ -43,7 +39,7 @@ void OrdersManager::receiveOrder(Order order)
 
 	receptionIndex[order.getID()] = insertedIt;
 	ordersDatabase[order.getID()] = order;
-	clientsDatabase[order.getClientID()].addOrderHistory(order.getID());
+	Client::getClient(order.getClientID()).addOrderHistory(order.getID());
 
 }
 

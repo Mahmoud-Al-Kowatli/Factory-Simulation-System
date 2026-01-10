@@ -2,6 +2,8 @@
 
 int Client::counter = 1;
 
+unordered_map<int, Client> Client::clientsDatabase = unordered_map<int, Client>();
+
 Client::Client()
 {
     //autmoatically assigns IDs to Clients everytime a new Client is created
@@ -24,4 +26,15 @@ int Client::getID() const
 void Client::addOrderHistory(int ID)
 {
 	orderHistoryIDs.push_back(ID);
+}
+
+
+Client Client::getClient(int ID)
+{
+	return clientsDatabase[ID];
+}
+
+void Client::registerClient(Client client)
+{
+    clientsDatabase[client.getID()] = client;
 }
