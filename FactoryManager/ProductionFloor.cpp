@@ -1,4 +1,4 @@
-#include<ProductionFloor.h>
+#include"ProductionFloor.h"
 
 ProductionFloor::ProductionFloor(int numLines){
     if (numLines < 2) numLines = 2; 
@@ -89,8 +89,8 @@ void ProductionFloor::displayStatus() {
     if (activeUnits.empty()) {
         cout << "No units currently active." << endl;
     } else {
-        for (auto const& [id, unit] : activeUnits) {
-            cout << "Unit ID: " << id << " | Status: Processing..." << endl;
+        for (auto const& unit : activeUnits) {
+            cout << "Unit ID: " << unit.first << " | Status: Processing..." << endl;
         }
     }
     cout << "==================================================================\n" << endl;

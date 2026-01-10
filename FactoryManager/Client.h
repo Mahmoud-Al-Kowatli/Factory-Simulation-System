@@ -11,4 +11,5 @@ public:
     Client();
     Client(string name);
     int getID() const;
+    void addOrderHistory(int ID);
 };

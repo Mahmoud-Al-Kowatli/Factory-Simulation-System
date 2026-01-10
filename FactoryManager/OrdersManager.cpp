@@ -42,5 +42,16 @@ void OrdersManager::receiveOrder(Order order)
 
 
 	receptionIndex[order.getID()] = insertedIt;
+	ordersDatabase[order.getID()] = order;
+	clientsDatabase[order.getClientID()].addOrderHistory(order.getID());
 
+}
+
+
+void OrdersManager::getAllOrdersHistory()
+{
+	for (auto& i : ordersDatabase)
+	{
+		i.second.printOrder();
+	}
 }

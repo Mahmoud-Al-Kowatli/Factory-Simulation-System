@@ -10,7 +10,7 @@ public:
 
 private:
     static int counter;
-    int id;
+    int id;//is the order id
     time_t arrivalTime;
     int requiredQuantity;
     int clientID;
@@ -23,9 +23,11 @@ private:
 public:
     double calculateValue();
 
-    bool operator<(const Order& other);
+    bool operator<(const Order& other) const;
 
     Order(Priority priority, int requiredQuantity, Product product);
+
+    Order();
 
     int getID();
 
@@ -36,5 +38,9 @@ public:
     Product getProduct();
 
     int getRequiredQuantity();
+
+    int getClientID();
+
+    void printOrder();
 
 };

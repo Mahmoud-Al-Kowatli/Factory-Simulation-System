@@ -9,7 +9,9 @@ class OrdersManager
     unordered_map<int, list<Order>::iterator> receptionIndex;
     priority_queue<Order> shippingQueue;
     unordered_map<int, Client> clientsDatabase;
+	unordered_map<int, Order> ordersDatabase;
 public:
     void registerClient(Client client);
     void receiveOrder(Order order);
+    void getAllOrdersHistory();
 };

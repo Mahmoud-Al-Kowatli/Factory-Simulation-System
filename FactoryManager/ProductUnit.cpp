@@ -1,6 +1,13 @@
 #include "ProductUnit.h"
 
 
+int ProductUnit::counter = 1;
+
+ProductUnit::ProductUnit()
+{
+    unitID = counter++;
+}
+
 void ProductUnit::addEvent(string desc){
     Event newEvent(desc);
     history.push_back(newEvent);
