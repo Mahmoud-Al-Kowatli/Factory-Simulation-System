@@ -3,12 +3,11 @@
 class User
 {
 public:
-    User();
+
     ~User();
 
     void login();
 
-    void logout();
 
 private:
     //staic username&password 
