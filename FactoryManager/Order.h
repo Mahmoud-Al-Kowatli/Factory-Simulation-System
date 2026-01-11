@@ -43,4 +43,6 @@ public:
 
     void printOrder();
 
+    void setQuantity(int newQuantity);
+
 };

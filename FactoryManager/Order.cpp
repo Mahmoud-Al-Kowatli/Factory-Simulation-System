@@ -92,3 +92,8 @@ int Order::getClientID()
     return clientID;
 }
 
+void Order::setQuantity(int newQuantity)
+{
+    requiredQuantity = newQuantity;
+    totalValue = calculateValue();
+}
