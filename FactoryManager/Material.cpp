@@ -25,16 +25,7 @@ Material::Material(string name, int quantity)
 	id = ++counter;
 	this->name = name;
 	this->quantity = quantity;
-	auto atd = [=](const Material& material) {
-		materialDatabase[material.getID()] = material;
-	};
-	atd(FABRIC);
-	atd(LED_UNITS);
-	atd(METAL_FRAME);
-	atd(METAL_HANDLES);
-	atd(PAINT);
-	atd(SCREW);
-	atd(WOOD_PANELS);
+	registerMaterial(*this);
 }
 
 int Material::getID() const
@@ -60,4 +51,9 @@ void Material::setQuantity(int quantity)
 Material Material::getMaterial(int id)
 {
 	return materialDatabase[id];
+}
+
+void Material::registerMaterial(const Material& material)
+{
+	materialDatabase[material.id] = material;
 }

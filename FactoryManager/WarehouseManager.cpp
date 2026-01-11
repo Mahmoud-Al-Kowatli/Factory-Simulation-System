@@ -19,25 +19,13 @@ void WarehouseManager::consumeFromStorageBins(int storageBinID, int quantity)
 	}
 }
 
-WarehouseManager::WarehouseManager()
-{
-	addProductToCatalog(Product::BOOKSHELF);
-	addProductToCatalog(Product::DRAWER_CABINET);
-	addProductToCatalog(Product::GAMING_DESK);
-	addProductToCatalog(Product::OFFICER_CHAIR);
-	addProductToCatalog(Product::WOODEN_DESK);
-}
-
-void WarehouseManager::addProductToCatalog(Product p)
-{
-	productCatalog[p.getID()] = p;
-}
+WarehouseManager::WarehouseManager() {}
 
 bool WarehouseManager::getProductDetails(Product& product, int id)
 {
-	if (productCatalog.find(id) == productCatalog.end())
+	if (Product::isFound(id))
 		return false;
-	productCatalog[id] = product;
+	product = Product::getProduct(id);
 	return true;
 }
 
@@ -72,9 +60,3 @@ void WarehouseManager::addMaterial(Material material)
 		storageBins[material.getID()].push_front(material);
 	inventoryCounts[material.getID()] += material.getQuantity();
 }
-
-void WarehouseManager::removeMaterial(Material material)
-{
-}
-
-

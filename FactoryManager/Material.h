@@ -16,7 +16,8 @@ public:
 	string getName();
 	int getQuantity() const;
 	void setQuantity(int quantity);
-	Material getMaterial(int id);
+	static Material getMaterial(int id);
+	static void registerMaterial(const Material& material);
 	static const Material SCREW;
 	static const Material METAL_FRAME;
 	static const Material FABRIC;
