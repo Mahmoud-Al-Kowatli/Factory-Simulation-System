@@ -37,6 +37,8 @@ public:
 
     Product getProduct();
 
+    int getProductID();
+
     int getRequiredQuantity();
 
     int getClientID();

@@ -21,7 +21,7 @@ void ProductionFloor::processNextOrder(int lineID) {
         Order topOrder = lines[lineID].top();
         lines[lineID].pop();
 
-        ProductUnit unit(topOrder.getID());
+        ProductUnit unit(topOrder.getID(), topOrder.getProductID());
         unit.addEvent("Production started.");
         
         activeUnits[topOrder.getID()] = unit;

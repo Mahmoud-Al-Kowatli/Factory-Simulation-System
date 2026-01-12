@@ -77,6 +77,11 @@ Product Order::getProduct()
     return product;
 }
 
+int Order::getProductID()
+{
+    return productID;
+}
+
 int Order::getRequiredQuantity()
 {
     return requiredQuantity;

@@ -1,12 +1,22 @@
 #include"Event.h"
 
-Event::Event(string description){
+int Event::counter = 1;
+
+Event::Event(string description)
+{
+    id = counter++;
     this->description = description;
     timestamp = time(0);
+    registerEvent(*this);
 }
 
 Event::~Event()
 {
+}
+
+int Event::getID()
+{
+    return id;
 }
 
 string Event::getDescription()
@@ -17,6 +27,19 @@ string Event::getDescription()
 time_t Event::getTimestamp()
 {
     return timestamp;
+}
+
+bool Event::tryGetEvent(Event& event, int id)
+{
+    if (eventDatabase.find(id) == eventDatabase.end())
+        return false;
+    event = eventDatabase[id];
+    return true;
+}
+
+void Event::registerEvent(Event event)
+{
+    eventDatabase[event.getID()] = event;
 }
 
 ostream& operator<<(ostream& os, const Event& event)

@@ -5,16 +5,24 @@
 class Event
 {
 private:
+    static int counter;
+    int id;
     string description;
     time_t timestamp;
+    static unordered_map<int, Event> eventDatabase;
 
 public:
+    Event(string desc);
+
+    int getID();
    
     string getDescription();
 
     time_t getTimestamp();
 
-    Event(string desc);
+    static bool tryGetEvent(Event& event, int id);
+
+    static void registerEvent(Event event);
 
 	friend ostream& operator<<(ostream& os, const Event& event);
 
