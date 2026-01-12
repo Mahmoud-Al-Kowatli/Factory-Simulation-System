@@ -23,7 +23,7 @@ WarehouseManager::WarehouseManager() {}
 
 bool WarehouseManager::getProductDetails(Product& product, int id)
 {
-	if (Product::isFound(id))
+	if (!Product::isFound(id))
 		return false;
 	product = Product::getProduct(id);
 	return true;

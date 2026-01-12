@@ -16,7 +16,6 @@ Order::Order(Priority priority, int requiredQuantity, Product product)
     totalValue = calculateValue();
     this->productID = product.getID();
     this->clientID = client.getID();
-
 }
 
 Order::Order() {
