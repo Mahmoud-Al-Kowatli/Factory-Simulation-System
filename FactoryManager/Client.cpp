@@ -39,3 +39,9 @@ void Client::registerClient(Client client)
 {
     clientsDatabase[client.getID()] = client;
 }
+
+
+//Some data for testing
+const Client Client::CLIENT_1 = Client("Client A");
+
+const Client Client::CLIENT_2 = Client("Client B");
