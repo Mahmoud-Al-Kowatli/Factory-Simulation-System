@@ -187,7 +187,7 @@ void FactoryManager::deleteOrder(int orderID)
 
 void FactoryManager::runSimulation()
 {
-    cout << "Welcom" << endl;
+    cout << "Welcome" << endl;
     int programRunning = 0;
     while (programRunning == 0)
     {
@@ -199,31 +199,30 @@ void FactoryManager::runSimulation()
         cout << "5- if you want to stop the program" << endl;
         int UserChoice;
         UserChoice = checkIfNumber(1, 4);
+        int id;
 
-        if (UserChoice == 1)
+        switch (UserChoice)
         {
+        case 1:
             AddOrder();
-        }
-        else if (UserChoice == 2)
-        {
-            int id;
+            break;
+        case 2:
             id = checkIfNumber();
             editOrder(id);
-        }
-        else if (UserChoice == 3)
-        {
-            int id;
+            break;
+        case 3:
             id = checkIfNumber();
-            deleteOrder(id);
-        }
-        else if (UserChoice = 4)
-        {
+            editOrder(id);
+            break;
+        case 4:
             showHistory();
-        }
-        else if (UserChoice = 5)
-        {
+            break;
+        case 5:
             programRunning = 1;
-            continue;
+            break;
+        default:
+            break;
         }
+
     }
 }
