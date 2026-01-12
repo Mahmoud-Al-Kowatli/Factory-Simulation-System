@@ -1,4 +1,5 @@
 #include "Client.h"
+#include "OrdersManager.h"
 
 int Client::counter = 1;
 
@@ -33,12 +34,14 @@ void Client::printClientInfo() const
 {
 	cout << "Client ID: " << id << endl;
 	cout << "Client Name: " << name << endl;
-    cout << "Client Orders IDs: ";
-    for (auto& i : orderHistoryIDs)
-    {
-        cout << i << ", ";
-    }
+    cout << "Client Orders: ";
+    OrdersManager::printOrderByClientID(id);
     cout << endl;
+}
+
+void Client::printOrderHistory() const
+{
+    
 }
 
 
@@ -54,6 +57,6 @@ void Client::registerClient(Client client)
 
 
 //Some data for testing
-const Client Client::CLIENT_1 = Client("Client A");
+Client Client::CLIENT_1 = Client("Client A");
 
-const Client Client::CLIENT_2 = Client("Client B");
+Client Client::CLIENT_2 = Client("Client B");

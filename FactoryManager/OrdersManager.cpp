@@ -63,3 +63,14 @@ void OrdersManager::getAllOrdersHistory()
 		i.second.printOrder();
 	}
 }
+
+void OrdersManager::printOrderByClientID(int clientID)
+{
+	for (auto& i : ordersDatabase)
+	{
+		if (i.second.getClientID() == clientID)
+		{
+			i.second.printOrder();
+		}
+	}
+}

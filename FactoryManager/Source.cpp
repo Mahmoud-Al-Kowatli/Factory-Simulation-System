@@ -7,7 +7,7 @@
 int main()
 {
 	
-	cout << Event("Factory Simulation Started");
+	Client::CLIENT_1.printClientInfo();
 
 
 }

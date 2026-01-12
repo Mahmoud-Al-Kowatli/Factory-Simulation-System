@@ -1,7 +1,6 @@
 #pragma once
 #include "Libraries.h"
 #include "Order.h"
-#include "Client.h"
 
 class OrdersManager
 {
@@ -13,4 +12,6 @@ public:
     static void receiveOrder(Order order);
     static bool getOrderByID(Order& order, int ID);
     static void getAllOrdersHistory();
+    static void printOrderByClientID(int clientID);
+
 };
