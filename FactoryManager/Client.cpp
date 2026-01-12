@@ -29,6 +29,18 @@ void Client::addOrderHistory(int ID)
 	orderHistoryIDs.push_back(ID);
 }
 
+void Client::printClientInfo() const
+{
+	cout << "Client ID: " << id << endl;
+	cout << "Client Name: " << name << endl;
+    cout << "Client Orders IDs: ";
+    for (auto& i : orderHistoryIDs)
+    {
+        cout << i << ", ";
+    }
+    cout << endl;
+}
+
 
 Client Client::getClient(int ID)
 {

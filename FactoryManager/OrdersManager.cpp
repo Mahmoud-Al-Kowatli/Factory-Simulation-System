@@ -1,5 +1,9 @@
 #include "OrdersManager.h"
 
+unordered_map<int, Order> OrdersManager::ordersDatabase = {};
+unordered_map<int, list<Order>::iterator> OrdersManager::receptionIndex = {};
+list<Order> OrdersManager::receptionQueue = {};
+priority_queue<Order> OrdersManager::shippingQueue = {};
 
 void OrdersManager::receiveOrder(Order order)
 {
