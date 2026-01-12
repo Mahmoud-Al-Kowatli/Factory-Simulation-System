@@ -4,7 +4,6 @@
 
 class Event
 {
-
 private:
     string description;
     time_t timestamp;

@@ -7,14 +7,13 @@
 
 class WarehouseManager {
 private:
-    unordered_map<int, deque<Material>> storageBins; //{MaterialID, deque<Material>}
-    unordered_map<int, int> inventoryCounts; //{MaterialID, TotalQunatity}
-    unordered_map<int, ProductUnit> finishedGoods;
-    void consumeFromStorageBins(int storageBinID, int quantity);
+    static unordered_map<int, deque<Material>> storageBins; //{MaterialID, deque<Material>}
+    static unordered_map<int, int> inventoryCounts; //{MaterialID, TotalQunatity}
+    static unordered_map<int, ProductUnit> finishedGoods;
+    static void consumeFromStorageBins(int storageBinID, int quantity);
 
 public:
-    WarehouseManager();
-    bool getProductDetails(Product& product, int id);
-    bool consumeMaterialsForOrder(Order order);
-    void addMaterial(Material material);
+    static bool getProductDetails(Product& product, int id);
+    static bool consumeMaterialsForOrder(Order order);
+    static void addMaterial(Material material);
 };

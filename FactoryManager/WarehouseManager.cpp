@@ -1,5 +1,9 @@
 #include "WarehouseManager.h"
 
+unordered_map<int, deque<Material>> WarehouseManager::storageBins;
+unordered_map<int, int> WarehouseManager::inventoryCounts;
+unordered_map<int, ProductUnit> WarehouseManager::finishedGoods;
+
 void WarehouseManager::consumeFromStorageBins(int storageBinID, int quantity)
 {
 	deque<Material>& storageBin = storageBins[storageBinID];
@@ -18,8 +22,6 @@ void WarehouseManager::consumeFromStorageBins(int storageBinID, int quantity)
 		}
 	}
 }
-
-WarehouseManager::WarehouseManager() {}
 
 bool WarehouseManager::getProductDetails(Product& product, int id)
 {
