@@ -2,6 +2,10 @@
 
 int Event::counter = 1;
 
+unordered_map<int, Event> Event::eventDatabase = {};
+
+Event::Event() : id(0), description(""), timestamp(0) {}
+
 Event::Event(string description)
 {
     id = counter++;

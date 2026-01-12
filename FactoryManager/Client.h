@@ -16,7 +16,6 @@ public:
     int getID() const;
     void addOrderHistory(int ID);
     void printClientInfo() const;
-	void printOrderHistory() const;
 
     //Some data for testing
 	static Client CLIENT_1;

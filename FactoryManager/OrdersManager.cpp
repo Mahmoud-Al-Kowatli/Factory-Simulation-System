@@ -44,7 +44,6 @@ void OrdersManager::receiveOrder(Order order)
 	receptionIndex[order.getID()] = insertedIt;
 	ordersDatabase[order.getID()] = order;
 	Client::getClient(order.getClientID()).addOrderHistory(order.getID());
-
 }
 
 bool OrdersManager::getOrderByID(Order& order, int ID)

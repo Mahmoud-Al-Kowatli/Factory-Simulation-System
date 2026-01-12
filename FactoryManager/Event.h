@@ -12,6 +12,8 @@ private:
     static unordered_map<int, Event> eventDatabase;
 
 public:
+    Event();
+
     Event(string desc);
 
     int getID();

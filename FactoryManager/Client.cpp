@@ -11,6 +11,7 @@ Client::Client()
     //autmoatically assigns IDs to Clients everytime a new Client is created
     this->id = counter++;
 	this->name = "Guest";
+    registerClient(*this);
 }
 
 Client::Client(string name)
@@ -18,6 +19,7 @@ Client::Client(string name)
     //autmoatically assigns IDs to Clients everytime a new Client is created
     this->id = counter++;
     this->name = name;
+    registerClient(*this);
 }
 
 int Client::getID() const
@@ -39,22 +41,15 @@ void Client::printClientInfo() const
     cout << endl;
 }
 
-void Client::printOrderHistory() const
-{
-    
-}
-
-
 Client Client::getClient(int ID)
 {
-	return clientsDatabase[ID];
+    return clientsDatabase[ID];
 }
 
 void Client::registerClient(Client client)
 {
     clientsDatabase[client.getID()] = client;
 }
-
 
 //Some data for testing
 Client Client::CLIENT_1 = Client("Client A");
