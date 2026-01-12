@@ -137,7 +137,7 @@ void FactoryManager::AddOrder()
     orderManager.receiveOrder(TheOrder);
     int id = TheOrder.getID();
     cout << "your order's ID is: " << id << endl;
-    cout << "your order's total price is: " << TheOrder.totalValue << endl;
+    cout << "your order's total price is: " << TheOrder.getTotalValue() << endl;
 }
 
 void FactoryManager::editOrder(int orderID)

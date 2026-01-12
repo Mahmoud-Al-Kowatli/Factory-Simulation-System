@@ -14,7 +14,7 @@ public:
 	WarehouseManager warehouseManager;
 	ProductionFloor productionFloor;
 	void runSimulation();
-	int AddOrder();
+	void AddOrder();
 	void editOrder(int id);
 	void deleteOrder();
 	void showHistory();
