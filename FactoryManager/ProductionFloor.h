@@ -3,8 +3,8 @@
 #include "Order.h"
 #include "ProductUnit.h"
 
-class ProductionFloor {
-protected:
+class ProductionFloor 
+{
     vector<priority_queue<Order>> lines;
     unordered_map<int, ProductUnit> activeUnits;
     int emergencyLineIndex;

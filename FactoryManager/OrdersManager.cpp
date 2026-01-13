@@ -46,6 +46,14 @@ void OrdersManager::receiveOrder(Order order)
 	Client::getClient(order.getClientID()).addOrderHistory(order.getID());
 }
 
+bool OrdersManager::tryDeleteOrder(int orderID)
+{
+	if (ordersDatabase.find(orderID) == ordersDatabase.end())
+		return false;
+	ordersDatabase.erase(orderID);
+	return true;
+}
+
 bool OrdersManager::getOrderByID(Order& order, int ID)
 {
 	if (ordersDatabase.find(ID) == ordersDatabase.end())

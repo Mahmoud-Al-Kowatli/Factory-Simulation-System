@@ -1,13 +1,4 @@
 #include "FactoryManager.h"
-FactoryManager::FactoryManager()
-{
-    runSimulation();
-}
-
-FactoryManager::~FactoryManager()
-{
-}
-
 
 void pressAnyButtonToContinue() {
     cout << "\nPress any button to continue....";
@@ -15,8 +6,8 @@ void pressAnyButtonToContinue() {
     system("cls");
 }
 
-void FactoryManager::printOrderDetailsForEditOrDelete(Order order) {
-
+void FactoryManager::printOrderDetailsForEditOrDelete(Order order)
+{
     cout << "\n================================================================\n";
     cout << "ID: " << order.getID();
     cout << "\nClient's Name: " << order.getClient().getName();
@@ -68,7 +59,7 @@ int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is numb
 
             cout << endl;
             num = stoi(TheInput);
-            if (num < x && num > y)
+            if (num < x || num > y)
             {
                 throw "input number out of range";
             }
@@ -82,40 +73,8 @@ int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is numb
     return num;
 }
 
-Product FactoryManager::choosingProduct()
-{
-	system("cls");
-    int choice;
-    cout << "\n================================================================\n";
-    cout << "please choose the product's you want by typing its number\n";
-    cout << "1- Officer Chair" << endl;
-    cout << "2- Wooden Desk" << endl;
-    cout << "3- Gaming Desk" << endl;
-    cout << "4- Bookshelf" << endl;
-    cout << "5- Drawer Cabient";
-    cout << "\n================================================================\n";
-    choice = checkIfNumber(1, 5);
-
-    switch (choice)
-    {
-    case 1:
-        return Product::OFFICER_CHAIR;
-    case 2:
-        return Product::WOODEN_DESK;
-    case 3:
-        return Product::GAMING_DESK;
-    case 4:
-        return Product::BOOKSHELF;
-    case 5:
-        return Product::DRAWER_CABINET;
-    default:
-        break;
-    }
-}
-
 int FactoryManager::choosingProductID()
 {
-	system("cls");
     cout << "\n================================================================\n";
     cout << "Please choose the product you want by typing its number:";
     cout << "\n================================================================\n";
@@ -126,7 +85,6 @@ int FactoryManager::choosingProductID()
 
 int FactoryManager::choosingClientID()
 {
-	system("cls");
     cout << "Which of these clients want to place an order (choose client's number):\n";
     Client::traverse([](Client c) { cout << c.getID() << ") " << c.getName() << endl; });
     int maximum = Client::getClientsNumber();
@@ -135,7 +93,6 @@ int FactoryManager::choosingClientID()
 
 Order::Priority FactoryManager::setPriority()
 {
-	system("cls");
     int choice;
     cout << "\n================================================================\n";
     cout << "please choose the order's priority you want by typing its number" << endl;
@@ -158,9 +115,8 @@ Order::Priority FactoryManager::setPriority()
     }
 }
 
-void FactoryManager::AddOrder()
+void FactoryManager::addOrder()
 {
-
     cout << "\n================================================================\n";
     cout << "please, enter the required order's information in order" << endl;
     int productID = choosingProductID(), clientID = choosingClientID();
@@ -173,7 +129,7 @@ void FactoryManager::AddOrder()
 
     Order TheOrder(priorityChosen, quantity, productID, clientID);
 
-    orderManager.receiveOrder(TheOrder);
+    OrdersManager::receiveOrder(TheOrder);
     int id = TheOrder.getID();
     cout << "your order's ID is: " << id << endl;
     cout << "your order's total price is: " << TheOrder.getTotalValue();
@@ -185,34 +141,22 @@ void FactoryManager::editOrder()
     Order order;
 
 
-    OrdersManager::traverse([](Order order){
-        cout << "\n================================================================\n";
-        cout << "ID: " << order.getID();
-        cout << "\nClient's Name: " << order.getClient().getName();
-        cout << "\nClient's ID: " << order.getClientID();
-        cout << "\nQuantity: " << order.getRequiredQuantity();
-        cout << "\nPrice: $" << order.getTotalValue();
-        cout << "\n================================================================\n"; 
-        });
+    OrdersManager::traverse(printOrderDetailsForEditOrDelete);
 
-
-    int maximum = OrdersManager::getOrdersNumber();
-    int orderID = checkIfNumber(1, maximum);
+    cout << "please enter the order's ID: " << endl;
+    int orderID = checkIfNumber();
 
     cout << "\n================================================================\n";
-    cout << "please enter the order's ID: " << endl;
-    while (!orderManager.getOrderByID(order, orderID))
+    while (!OrdersManager::getOrderByID(order, orderID))
     {
         cout << "order not found, ID is wrong, please try again.";
         orderID = checkIfNumber();
-        pressAnyButtonToContinue();
     }
-    cout << "please choose what do you want to change by typing the number of it:" << endl;
+    cout << "Please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
     cout << "2- edit order's quantity";
     cout << "\n================================================================\n";
-    int choice;
-    choice = checkIfNumber(1, 3);
+    int choice = checkIfNumber(1, 2);
     if (choice == 1)
     {
         order.setPriority(setPriority());
@@ -228,20 +172,24 @@ void FactoryManager::editOrder()
 void FactoryManager::showHistory()
 {
     cout << "this is all order's history: " << endl;
-    orderManager.getAllOrdersHistory();
+    OrdersManager::getAllOrdersHistory();
 }
 
-void FactoryManager::deleteOrder(int orderID)
+void FactoryManager::tryDeleteOrder()
 {
-	system("cls");
     Order order;
+    OrdersManager::traverse(printOrderDetailsForEditOrDelete);
     cout << "please enter the order's ID: " << endl;
-    if (!orderManager.getOrderByID(order, orderID))
+    int orderID = checkIfNumber();
+    while (!OrdersManager::getOrderByID(order, orderID))
     {
         cout << "order not found, ID is wrong, please try again.";
-        return;
+        orderID = OrdersManager::getOrderByID(order, orderID);
     }
-    // still have to delete the order from the list
+    if (OrdersManager::tryDeleteOrder(orderID))
+        cout << "Failed to delete, try again later";
+    else
+        cout << "Deleted Successfully!";
 }
 
 void FactoryManager::runSimulation()
@@ -254,20 +202,19 @@ void FactoryManager::runSimulation()
         cout << "\n================================================================\n";
         cout << "please choose one of the following actions by choosing its number: " << endl;
         cout << "1- if you want to add an order" << endl;
-        cout << "2- if you want to edit and existing order" << endl;
+        cout << "2- if you want to edit an existing order" << endl;
         cout << "3- if you want to to delete order" << endl;
         cout << "4- if want to see all order's history" << endl;
         cout << "5- if you want to stop the program" << endl;
         cout << "\n================================================================\n";
         int UserChoice;
         UserChoice = checkIfNumber(1, 5);
-        int id;
 
             system("cls");
         switch (UserChoice)
         {
         case 1:
-            AddOrder();
+            addOrder();
             pressAnyButtonToContinue();
             break;
         case 2:
@@ -275,8 +222,7 @@ void FactoryManager::runSimulation()
             pressAnyButtonToContinue();
             break;
         case 3:
-            id = checkIfNumber();
-			deleteOrder(id);
+			tryDeleteOrder();
             pressAnyButtonToContinue();
             break;
         case 4:

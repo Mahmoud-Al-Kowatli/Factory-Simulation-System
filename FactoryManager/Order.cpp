@@ -33,6 +33,7 @@ double Order::calculateValue() {
 }
 
 void Order::printOrder() {
+    cout << "==============================================\n";
     cout << "Order ID: " << id << endl;
     cout << "Client ID: " << clientID << endl;
     cout << "Product ID: " << productID << endl;
@@ -40,17 +41,18 @@ void Order::printOrder() {
     cout << "Total Value: " << totalValue << endl;
     cout << "Priority: ";
     if (priority == NORMAL) {
-        cout << "NORMAL" << endl;
+        cout << "Normal" << endl;
     }
     else if (priority == VIP) {
         cout << "VIP" << endl;
     }
     else if (priority == URGENT) {
-        cout << "URGENT" << endl;
+        cout << "Urgent" << endl;
     }
 	char timeBuffer[26];
     ctime_s(timeBuffer, sizeof(timeBuffer), &arrivalTime);
-    cout << "Arrival Time: " << timeBuffer << endl;
+    cout << "Arrival Time: " << timeBuffer;
+    cout << "==============================================\n";
 }
 
 // Operator overloading

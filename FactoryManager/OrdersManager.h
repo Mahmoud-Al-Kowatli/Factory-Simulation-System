@@ -10,6 +10,7 @@ class OrdersManager
 	static unordered_map<int, Order> ordersDatabase;
 public:
     static void receiveOrder(Order order);
+    static bool tryDeleteOrder(int orderID);
     static bool getOrderByID(Order& order, int ID);
     static void getAllOrdersHistory();
     static void printOrderByClientID(int clientID);

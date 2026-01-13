@@ -1,12 +1,11 @@
-#include "Product.h"
-#include"User.h"
-#include"Libraries.h"
-#include "WarehouseManager.h"
 #include"FactoryManager.h"
 
 int main()
 {
-	
-	FactoryManager f;
-
+	FactoryManager::runSimulation();
+	//ProductUnit unit;
+	//unit.addEvent("add new unit");
+	//unit.addEvent("prepare for shipping");
+	//unit.addEvent("the unit was arrived");
+	//unit.showProductUnitEvents();
 }

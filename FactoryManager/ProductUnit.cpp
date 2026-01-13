@@ -11,6 +11,16 @@ void ProductUnit::addEvent(string desc)
     historyIDs.push_back(e.getID());
 }
 
+void ProductUnit::showProductUnitEvents()
+{
+    Event event;
+    for (const int& i : historyIDs)
+    {
+        Event::tryGetEvent(event, i);
+        cout << event << endl;
+    }
+}
+
 ProductUnit::ProductUnit(int parentOrderID, int productID)
 {
     unitID = ++counter;

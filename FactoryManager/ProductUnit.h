@@ -17,4 +17,5 @@ public:
     ProductUnit();
     ProductUnit(int parentOrderID, int productID);
     void addEvent(string desc);
+    void showProductUnitEvents();
 };

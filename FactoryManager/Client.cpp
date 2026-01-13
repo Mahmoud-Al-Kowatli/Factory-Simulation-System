@@ -1,23 +1,17 @@
 #include "Client.h"
 #include "OrdersManager.h"
 
-int Client::counter = 1;
+int Client::counter = 0;
 
 //initialization of the static member
 unordered_map<int, Client> Client::clientsDatabase = {};
 
-Client::Client()
-{
-    //autmoatically assigns IDs to Clients everytime a new Client is created
-    this->id = counter++;
-	this->name = "Guest";
-    //registerClient(*this);
-}
+Client::Client() : id(0), name("Guest") {}
 
 Client::Client(string name)
 {
     //autmoatically assigns IDs to Clients everytime a new Client is created
-    this->id = counter++;
+    this->id = ++counter;
     this->name = name;
     registerClient(*this);
 }
