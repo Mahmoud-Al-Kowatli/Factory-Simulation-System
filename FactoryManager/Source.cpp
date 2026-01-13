@@ -8,5 +8,5 @@ int main()
 {
 	
 	FactoryManager f;
-	f.runSimulation();
+
 }

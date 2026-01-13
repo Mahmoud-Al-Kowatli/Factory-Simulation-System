@@ -43,7 +43,7 @@ public:
 
     int getClientID();
 
-    Client getClient(int clientID);
+    Client getClient();
 
     void printOrder();
 

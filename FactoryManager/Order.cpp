@@ -96,7 +96,7 @@ int Order::getClientID()
     return clientID;
 }
 
-Client Order::getClient(int clientID)
+Client Order::getClient()
 {
     return Client::getClient(clientID);
 }

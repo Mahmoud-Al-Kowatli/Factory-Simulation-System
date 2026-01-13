@@ -73,3 +73,14 @@ void OrdersManager::printOrderByClientID(int clientID)
 		}
 	}
 }
+
+void OrdersManager::traverse(void(*function)(Order))
+{
+	for (const pair<int, Order>& p : ordersDatabase)
+		function(p.second);
+}
+
+int OrdersManager::getOrdersNumber()
+{
+	return ordersDatabase.size();
+}

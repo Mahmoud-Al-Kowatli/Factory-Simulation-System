@@ -15,7 +15,8 @@ public:
 	ProductionFloor productionFloor;
 	void runSimulation();
 	void AddOrder();
-	void editOrder(int orderID);
+	void editOrder();
+	void printOrderDetailsForEditOrDelete(Order order);
 	void deleteOrder(int orderID);
 	void showHistory();
 	Product choosingProduct();

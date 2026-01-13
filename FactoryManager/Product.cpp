@@ -23,16 +23,6 @@ Product::Product(string name, double unitPrice, vector<pair<Material, int>> requ
 	this->unitPrice = unitPrice;
 	this->requirements = requirements;
 
-	auto atd = [=](const Product &product)
-	{
-		productDatabase[product.getID()] = product;
-	};
-	atd(BOOKSHELF);
-	atd(DRAWER_CABINET);
-	atd(GAMING_DESK);
-	atd(OFFICER_CHAIR);
-	atd(WOODEN_DESK);
-
 	registerProduct(*this);
 }
 

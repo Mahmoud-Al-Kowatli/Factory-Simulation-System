@@ -8,6 +8,24 @@ FactoryManager::~FactoryManager()
 {
 }
 
+
+void pressAnyButtonToContinue() {
+    cout << "\nPress any button to continue....";
+    system("pause>0");
+    system("cls");
+}
+
+void FactoryManager::printOrderDetailsForEditOrDelete(Order order) {
+
+    cout << "\n================================================================\n";
+    cout << "ID: " << order.getID();
+    cout << "\nClient's Name: " << order.getClient().getName();
+    cout << "\nClient's ID: " << order.getClientID();
+    cout << "\nQuantity: " << order.getRequiredQuantity();
+    cout << "\nPrice: $" << order.getTotalValue();
+    cout << "\n================================================================\n";
+}
+
 int FactoryManager::checkIfNumber() // checks if user entered a number or not
 {
     string TheInput;
@@ -145,7 +163,6 @@ void FactoryManager::AddOrder()
 
     cout << "\n================================================================\n";
     cout << "please, enter the required order's information in order" << endl;
-    Product chosenProduct = choosingProduct();
     int productID = choosingProductID(), clientID = choosingClientID();
 
     cout << "please, enter the quantity you want: " << endl;
@@ -163,17 +180,32 @@ void FactoryManager::AddOrder()
     cout << "\n================================================================\n";
 }
 
-void FactoryManager::editOrder(int orderID)
+void FactoryManager::editOrder()
 {
-	system("cls");
     Order order;
+
+
+    OrdersManager::traverse([](Order order){
+        cout << "\n================================================================\n";
+        cout << "ID: " << order.getID();
+        cout << "\nClient's Name: " << order.getClient().getName();
+        cout << "\nClient's ID: " << order.getClientID();
+        cout << "\nQuantity: " << order.getRequiredQuantity();
+        cout << "\nPrice: $" << order.getTotalValue();
+        cout << "\n================================================================\n"; 
+        });
+
+
+    int maximum = OrdersManager::getOrdersNumber();
+    int orderID = checkIfNumber(1, maximum);
 
     cout << "\n================================================================\n";
     cout << "please enter the order's ID: " << endl;
-    if (!orderManager.getOrderByID(order, orderID))
+    while (!orderManager.getOrderByID(order, orderID))
     {
         cout << "order not found, ID is wrong, please try again.";
-        return;
+        orderID = checkIfNumber();
+        pressAnyButtonToContinue();
     }
     cout << "please choose what do you want to change by typing the number of it:" << endl;
     cout << "1- edit order's priority" << endl;
@@ -216,8 +248,8 @@ void FactoryManager::runSimulation()
 {
 	system("cls");
     cout << "Welcome" << endl;
-    int programRunning = 0;
-    while (programRunning == 0)
+    
+    while (true)
     {
         cout << "\n================================================================\n";
         cout << "please choose one of the following actions by choosing its number: " << endl;
@@ -231,25 +263,30 @@ void FactoryManager::runSimulation()
         UserChoice = checkIfNumber(1, 5);
         int id;
 
+            system("cls");
         switch (UserChoice)
         {
         case 1:
             AddOrder();
+            pressAnyButtonToContinue();
             break;
         case 2:
-            id = checkIfNumber();
-            editOrder(id);
+            editOrder();
+            pressAnyButtonToContinue();
             break;
         case 3:
             id = checkIfNumber();
-            editOrder(id);
+			deleteOrder(id);
+            pressAnyButtonToContinue();
             break;
         case 4:
             showHistory();
+            pressAnyButtonToContinue();
             break;
         case 5:
-            programRunning = 1;
-            break;
+            cout << "Thank you for using our services :-)\n";
+            pressAnyButtonToContinue();
+            return;
         default:
             break;
         }

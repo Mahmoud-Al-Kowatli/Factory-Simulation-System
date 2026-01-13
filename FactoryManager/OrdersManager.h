@@ -13,5 +13,7 @@ public:
     static bool getOrderByID(Order& order, int ID);
     static void getAllOrdersHistory();
     static void printOrderByClientID(int clientID);
+    static void traverse(void(*function)(Order));
+    static int getOrdersNumber();
 
 };
