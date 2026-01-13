@@ -7,7 +7,6 @@
 int main()
 {
 	
-	Client::CLIENT_1.printClientInfo();
-
-
+	FactoryManager f;
+	f.runSimulation();
 }

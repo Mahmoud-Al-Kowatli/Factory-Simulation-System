@@ -11,10 +11,10 @@ Order::Order(Priority priority, int requiredQuantity, int productID, int clientI
     this->priority = priority;
     this->requiredQuantity = requiredQuantity;
     arrivalTime = time(0);
-    totalValue = calculateValue();
     this->productID = productID;
     this->clientID = clientID;
     productPrice = Product::getProduct(productID).getPrice();
+    totalValue = calculateValue();
 }
 
 Order::Order() {
