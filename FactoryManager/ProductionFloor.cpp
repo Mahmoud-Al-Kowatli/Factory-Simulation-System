@@ -22,7 +22,8 @@ void ProductionFloor::processNextOrder(int lineID) {
         lines[lineID].pop();
 
         ProductUnit unit(topOrder.getID(), topOrder.getProductID());
-        unit.addEvent("Production started.");
+        Event event("Production started.");
+        unit.addEvent(event.getID());
         
         activeUnits[topOrder.getID()] = unit;
         
@@ -56,7 +57,8 @@ void ProductionFloor::handleLineBreakdown(int brokenLineID) {
     // Inside handleLineBreakdown
     for (auto& pair : activeUnits) {
         // If we can track which line the unit was on
-        pair.second.addEvent("Warning: Line " + to_string(brokenLineID) + " down. Checking unit integrity.");
+        Event event("Warning: Line " + to_string(brokenLineID) + " down. Checking unit integrity.");
+        pair.second.addEvent(event.getID());
     }
 }
 

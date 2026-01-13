@@ -16,6 +16,7 @@ private:
 public:
     ProductUnit();
     ProductUnit(int parentOrderID, int productID);
-    void addEvent(string desc);
+    void addEvent(int eventID);
     void showProductUnitEvents();
+    void finish();
 };

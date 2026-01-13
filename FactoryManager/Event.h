@@ -24,6 +24,8 @@ public:
 
     static bool tryGetEvent(Event& event, int id);
 
+    static bool isFound(int eventID);
+
     static void registerEvent(Event event);
 
 	friend ostream& operator<<(ostream& os, const Event& event);

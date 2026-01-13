@@ -33,9 +33,14 @@ time_t Event::getTimestamp()
     return timestamp;
 }
 
+bool Event::isFound(int eventID)
+{
+    return eventDatabase.find(eventID) != eventDatabase.end();
+}
+
 bool Event::tryGetEvent(Event& event, int id)
 {
-    if (eventDatabase.find(id) == eventDatabase.end())
+    if (!isFound(id))
         return false;
     event = eventDatabase[id];
     return true;
