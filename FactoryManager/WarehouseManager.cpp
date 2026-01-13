@@ -62,3 +62,9 @@ void WarehouseManager::addMaterial(Material material)
 		storageBins[material.getID()].push_front(material);
 	inventoryCounts[material.getID()] += material.getQuantity();
 }
+
+void WarehouseManager::addMaterial(Material material, int count)
+{
+	for (int i = 0; i < count; i++)
+		addMaterial(material);
+}

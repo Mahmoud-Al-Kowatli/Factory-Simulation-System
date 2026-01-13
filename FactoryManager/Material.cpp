@@ -57,3 +57,14 @@ void Material::registerMaterial(const Material& material)
 {
 	materialDatabase[material.id] = material;
 }
+
+void Material::traverse(void(*function)(Material))
+{
+	for (const pair<int, Material>& p : materialDatabase)
+		function(p.second);
+}
+
+int Material::getMaterialsNumber()
+{
+	return materialDatabase.size();
+}

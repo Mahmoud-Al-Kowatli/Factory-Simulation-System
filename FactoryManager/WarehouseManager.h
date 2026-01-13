@@ -16,4 +16,5 @@ public:
     static bool getProductDetails(Product& product, int id);
     static bool consumeMaterialsForOrder(Order order);
     static void addMaterial(Material material);
+    static void addMaterial(Material material, int count);
 };

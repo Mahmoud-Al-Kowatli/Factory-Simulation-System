@@ -31,7 +31,7 @@ int ProductionFloor::getNoOfLines()
 void ProductionFloor::assignOrder(int linID ,Order o){
     if (linID >= 0 && linID < lines.size()){
         lines[linID].push(o);
-        cout<<"Order " << o.getID() << "assigned to line "<< linID <<endl;
+        cout<<"Order " << o.getID() << " assigned to line "<< linID <<endl;
     }
     else{
         cout << "Error Line ID out of bounds\n";

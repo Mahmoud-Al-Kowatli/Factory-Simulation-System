@@ -18,6 +18,8 @@ public:
 	void setQuantity(int quantity);
 	static Material getMaterial(int id);
 	static void registerMaterial(const Material& material);
+	static void traverse(void(*function)(Material));
+	static int getMaterialsNumber();
 	static const Material SCREW;
 	static const Material METAL_FRAME;
 	static const Material FABRIC;
