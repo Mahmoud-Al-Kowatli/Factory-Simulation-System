@@ -112,9 +112,20 @@ void FactoryManager::registerOrder() {
   
     int Line = ProductionFloor::findBestAvailableLine(0);
     ProductionFloor::assignOrder(Line, order);
+    OrdersManager::tryDeleteFromList();
     cout << "\nThe order " << order.getID() << " was placed in the line[" << Line << "].";
     
 }
+
+void FactoryManager::processOrder()
+{
+
+    for (int i = 1; i < ProductionFloor::getNoOfLines(); i++)
+    {
+        ProductionFloor::processNextOrder(i);
+    }
+}
+
 
 void FactoryManager::buyMaterial()
 {
@@ -141,10 +152,11 @@ void FactoryManager::startProduction()
         cout << "2- Emergency" << endl;
         cout << "3- Buy materials" << endl;
         cout << "4- Display production floor statues" << endl;
-        cout << "5- Return to main menu" << endl;
+        cout << "5- Process next order" << endl;
+        cout << "6- Return to main menu" << endl;
         cout << "\n================================================================\n";
         int UserChoice;
-        UserChoice = checkIfNumber(1, 5);
+        UserChoice = checkIfNumber(1, 6);
         system("cls");
         switch (UserChoice)
         {
@@ -160,10 +172,14 @@ void FactoryManager::startProduction()
             pressAnyButtonToContinue();
             break;
         case 4:
-
+            ProductionFloor::displayStatus();
             pressAnyButtonToContinue();
             break;
         case 5:
+            processOrder();
+            pressAnyButtonToContinue();
+            break;
+        case 6:
             return;
         default:
             break;

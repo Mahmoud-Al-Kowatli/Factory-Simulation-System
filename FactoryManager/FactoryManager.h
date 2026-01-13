@@ -14,6 +14,7 @@ class FactoryManager
 	static int choosingProductID();
 	static int choosingClientID();
 	static int checkIfNumber();
+	static void processOrder();
 	static int checkIfNumber(int x, int y);
 	static void startProduction();
 	static void registerOrder();
