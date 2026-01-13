@@ -85,6 +85,15 @@ void ProductionFloor::handleLineBreakdown(int brokenLineID) {
     }
 }
 
+bool ProductionFloor::isLineEmpty(int lineID)
+{
+    if (lines[lineID].empty())
+    {
+        return true;
+    }
+    return false;
+}
+
 int ProductionFloor::findBestAvailableLine(int excludedLine) {
     int bestLine = -1;
     int minOrders = INT_MAX;

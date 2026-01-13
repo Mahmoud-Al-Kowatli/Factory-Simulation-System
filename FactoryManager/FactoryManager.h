@@ -17,6 +17,7 @@ class FactoryManager
 	static void processOrder();
 	static int checkIfNumber(int x, int y);
 	static void startProduction();
+	static void handleLineBreakdown();
 	static void registerOrder();
 	static void buyMaterial();
 	static Order::Priority setPriority();

@@ -15,6 +15,7 @@ public:
     static int getNoOfLines();
     static void assignOrder(int lineID, Order o);
     static void handleLineBreakdown(int brokenLineID);
+	static bool isLineEmpty(int lineID);
     static void processNextOrder(int lineID);
     static int findBestAvailableLine(int excludedLine);
     static void displayStatus();

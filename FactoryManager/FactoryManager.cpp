@@ -120,8 +120,13 @@ void FactoryManager::registerOrder() {
 void FactoryManager::processOrder()
 {
 
-    for (int i = 1; i < ProductionFloor::getNoOfLines(); i++)
+    for (int i = 0; i < ProductionFloor::getNoOfLines(); i++)
     {
+        if (ProductionFloor::isLineEmpty(i))
+        {
+            cout << "Line [" << i << "] is empty!, there are no orders to process.\n"; 
+            continue;
+        }
         ProductionFloor::processNextOrder(i);
     }
 }
@@ -165,6 +170,7 @@ void FactoryManager::startProduction()
             pressAnyButtonToContinue();
             break;
         case 2:
+			handleLineBreakdown();
             pressAnyButtonToContinue();
             break;
         case 3:
@@ -185,6 +191,21 @@ void FactoryManager::startProduction()
             break;
         }
     }
+}
+
+void FactoryManager::handleLineBreakdown()
+{
+	int Line = checkIfNumber(1, ProductionFloor::getNoOfLines() - 1);
+
+    if (ProductionFloor::isLineEmpty(Line))
+    {
+        cout << "Line is empty and will be fixed ASAP!\n";
+		return;
+    }
+
+	ProductionFloor::handleLineBreakdown(Line);
+    cout << "Sucess! the products were moved to the Emergency line and will be handeled there";
+    pressAnyButtonToContinue();
 }
 
 int FactoryManager::choosingProductID()
