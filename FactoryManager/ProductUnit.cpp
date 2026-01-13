@@ -11,6 +11,21 @@ void ProductUnit::addEvent(int eventID)
         historyIDs.push_back(eventID);
 }
 
+int ProductUnit::getID()
+{
+    return unitID;
+}
+
+int ProductUnit::getProductID()
+{
+    return productID;
+}
+
+int ProductUnit::getParentOrderID()
+{
+    return parentOrderID;
+}
+
 void ProductUnit::showProductUnitEvents()
 {
     Event event;

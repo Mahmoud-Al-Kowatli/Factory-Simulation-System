@@ -1,19 +1,26 @@
 #include"ProductionFloor.h"
 
-ProductionFloor::ProductionFloor(int numLines){
-    if (numLines < 2) numLines = 2; 
-    lines.resize(numLines);
-    emergencyLineIndex = numLines - 1;
+vector<priority_queue<Order>> ProductionFloor::lines = {};
+
+unordered_map<int, ProductUnit> ProductionFloor::activeUnits = {};
+
+int ProductionFloor::emergencyLineIndex = 0;
+
+void ProductionFloor::setNumberOfLines(int linesNum)
+{
+    if (linesNum < 2) linesNum = 2;
+    lines.resize(linesNum);
+    emergencyLineIndex = linesNum - 1;
 }
 
-void ProductionFloor::assignOrder(int linID ,Order o ){
-        if ( linID >= 0 && linID <lines.size()){
-            lines[linID].push(o);
-            cout<<"Order " <<o.getID()<<"assigned to line "<<linID<<endl;
-        }
-        else{
-            cout<<"Error Line ID out of bounds \n";
-        }
+void ProductionFloor::assignOrder(int linID ,Order o){
+    if (linID >= 0 && linID < lines.size()){
+        lines[linID].push(o);
+        cout<<"Order " << o.getID() << "assigned to line "<< linID <<endl;
+    }
+    else{
+        cout << "Error Line ID out of bounds\n";
+    }
 }
 
 void ProductionFloor::processNextOrder(int lineID) {
@@ -21,11 +28,16 @@ void ProductionFloor::processNextOrder(int lineID) {
         Order topOrder = lines[lineID].top();
         lines[lineID].pop();
 
-        ProductUnit unit(topOrder.getID(), topOrder.getProductID());
         Event event("Production started.");
-        unit.addEvent(event.getID());
-        
-        activeUnits[topOrder.getID()] = unit;
+        vector<ProductUnit> vUnits;
+
+        int rq = topOrder.getRequiredQuantity();
+        for (int i = 0; i < rq; i++)
+        {
+            ProductUnit unit(topOrder.getID(), topOrder.getProductID());
+            unit.addEvent(event.getID());
+            activeUnits[unit.getID()] = unit;
+        }
         
         cout << "Processing Unit: " << topOrder.getID() << " on line " << lineID << endl;
     }
@@ -35,28 +47,22 @@ void ProductionFloor::handleLineBreakdown(int brokenLineID) {
     if (brokenLineID < 0 || brokenLineID >= lines.size()) return;
 
     cout << "CRITICAL: Line " << brokenLineID << " failure detected!" << endl;
-
-    // 1. Extract pending orders from the broken line
     vector<Order> affectedOrders;
     while (!lines[brokenLineID].empty()) {
         affectedOrders.push_back(lines[brokenLineID].top());
         lines[brokenLineID].pop();
     }
 
-    // 2. Redistribute orders
     for (Order& o : affectedOrders) {
         int target = findBestAvailableLine(brokenLineID);
         
-        // If all normal lines are overloaded, use the Emergency Line
         if (target == -1 || lines[target].size() > 10) { 
             target = emergencyLineIndex;
             cout << "Normal lines overloaded. Using Emergency Line for Order " << o.getID() << endl;
         }
         lines[target].push(o);
     }
-    // Inside handleLineBreakdown
     for (auto& pair : activeUnits) {
-        // If we can track which line the unit was on
         Event event("Warning: Line " + to_string(brokenLineID) + " down. Checking unit integrity.");
         pair.second.addEvent(event.getID());
     }
@@ -64,7 +70,7 @@ void ProductionFloor::handleLineBreakdown(int brokenLineID) {
 
 int ProductionFloor::findBestAvailableLine(int excludedLine) {
     int bestLine = -1;
-    size_t minOrders = 999999;
+    int minOrders = INT_MAX;
 
     for (int i = 0; i < lines.size(); i++) {
         if (i != excludedLine && i != emergencyLineIndex) {
@@ -78,16 +84,14 @@ int ProductionFloor::findBestAvailableLine(int excludedLine) {
 }
 
 void ProductionFloor::displayStatus() {
-    cout << "\n================= FACTORY PRODUCTION FLOOR STATUS =================" << endl;
+    cout << "\n================= Factory Production Floor Status =================" << endl;
     
-    // 1. Display status of each production line
     for (int i = 0; i < lines.size(); i++) {
-        string lineType = (i == emergencyLineIndex) ? " [EMERGENCY LINE]" : " [NORMAL LINE]";
+        string lineType = (i == emergencyLineIndex) ? " [Emergency Line]" : " [Normal Line]";
         cout << "Line " << i << lineType << " - Pending Orders: " << lines[i].size() << endl;
     }
 
-    // 2. Display units currently being processed (from the Map)
-    cout << "\n--- Active Units in Production (O(1) Tracking) ---" << endl;
+    cout << "\n--- Active Units in Production ---" << endl;
     if (activeUnits.empty()) {
         cout << "No units currently active." << endl;
     } else {

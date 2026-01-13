@@ -5,16 +5,15 @@
 
 class ProductionFloor 
 {
-    vector<priority_queue<Order>> lines;
-    unordered_map<int, ProductUnit> activeUnits;
-    int emergencyLineIndex;
+    static vector<priority_queue<Order>> lines;
+    static unordered_map<int, ProductUnit> activeUnits;
+    static int emergencyLineIndex;
 
 public:
-    ProductionFloor(int numLines = 3);
-    
-    void assignOrder(int lineID, Order o);
-    void handleLineBreakdown(int brokenLineID);
-    void processNextOrder(int lineID);
-    int findBestAvailableLine(int excludedLine);
-    void displayStatus();
+    static void setNumberOfLines(int linesNum);
+    static void assignOrder(int lineID, Order o);
+    static void handleLineBreakdown(int brokenLineID);
+    static void processNextOrder(int lineID);
+    static int findBestAvailableLine(int excludedLine);
+    static void displayStatus();
 };
