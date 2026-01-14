@@ -51,6 +51,21 @@ void Event::registerEvent(Event event)
     eventDatabase[event.getID()] = event;
 }
 
+void Event::printAllEvents()
+{
+    if (eventDatabase.empty())
+    {
+		cout << "There are no registered events.\n";
+        return;
+    }
+	cout << "=== All Registered Events ===\n";
+    for (auto& i : eventDatabase)
+    {
+        cout << i.second;
+    }
+    cout << "\n===============================\n";
+}
+
 ostream& operator<<(ostream& os, const Event& event)
 {
     #ifdef _WIN32

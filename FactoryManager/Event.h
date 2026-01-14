@@ -28,6 +28,8 @@ public:
 
     static void registerEvent(Event event);
 
+    static void printAllEvents();
+
 	friend ostream& operator<<(ostream& os, const Event& event);
 
     ~Event();

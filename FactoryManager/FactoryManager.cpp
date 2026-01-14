@@ -438,10 +438,11 @@ void FactoryManager::runSimulation()
         cout << "3- if you want to to delete order" << endl;
         cout << "4- if want to see all order's history" << endl;
         cout << "5- Start production" << endl;
-        cout << "6- if you want to stop the program" << endl;
+        cout << "6- Show All Events" << endl;
+        cout << "7- if you want to stop the program" << endl;
         cout << "================================================================\n";
         int UserChoice;
-        UserChoice = checkIfNumber(1, 6);
+        UserChoice = checkIfNumber(1, 7);
 
         #ifdef _WIN32
             #define CLEAR_SCREEN "cls"
@@ -470,6 +471,10 @@ void FactoryManager::runSimulation()
             startProduction();
             break;
         case 6:
+            Event::printAllEvents();
+			pressAnyButtonToContinue();
+            break;
+        case 7:
             cout << "Thank you for using our services :-)\n";
             pressAnyButtonToContinue();
             return;
