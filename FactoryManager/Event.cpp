@@ -53,9 +53,17 @@ void Event::registerEvent(Event event)
 
 ostream& operator<<(ostream& os, const Event& event)
 {
-    char timeBuffer[26];
-    ctime_s(timeBuffer, sizeof(timeBuffer), &event.timestamp);
-    os << "Event Description: " << event.description
-        << ", Timestamp: " << timeBuffer;
+    #ifdef _WIN32
+    // [Cross-Platform Compatibility] 
+    // We use preprocessor directives to handle time string formatting 
+    // because ctime_s is Microsoft-specific, while ctime is standard.
+        char timeBuffer[26];
+        ctime_s(timeBuffer, sizeof(timeBuffer), &event.timestamp);
+        os << "Event Description: " << event.description << ", Timestamp: " << timeBuffer;
+    #else
+        // Standard C++ for Linux (Arch) and macOS
+        char* timeStr = ctime(&event.timestamp);
+        os << "Event Description: " << event.description << ", Timestamp: " << timeStr;
+    #endif
     return os;
 }
