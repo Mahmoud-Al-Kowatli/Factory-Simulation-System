@@ -55,6 +55,8 @@ g++ -std=c++17 -o FactoryApp *.cpp
 cd ~/Desktop/University/Projects/Factory-Simulation-System/FactoryManager
 
 g++ -std=c++17 -o FactoryApp *.cpp && ./FactoryApp
+
+
 ---
 
 ## 🚨 Emergency Handling |  
