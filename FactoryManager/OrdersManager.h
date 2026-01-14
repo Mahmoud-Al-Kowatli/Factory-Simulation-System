@@ -24,5 +24,6 @@ public:
     static void saveOrdersForShipping(vector<Order>& orders);
     static void changeOrder(Order order);
     static bool tryGetTopOrderReadyForShipping(Order& order);
+    static void printOrdersWithItsEvents();
     static void shipTopOrder();
 };
