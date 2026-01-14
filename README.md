@@ -5,38 +5,85 @@ This project is a comprehensive simulation of a multi-line factory production sy
 
 
 ---
+## 🚀 Key Features (Latest Updates)
+* **🐧 Cross-Platform Support:** Fully compatible with both **Windows** and **Linux (Arch)** environments using preprocessor directives.
+* **📦 Integrated Logistics:** Real-time transition from the Production Floor to the **Shipping Queue** based on priority.
+* **🚨 Smart Emergency Recovery:** Advanced line breakdown handling that redistributes orders to the least-congested lines.
+* **⏱️ Precision Tracking:** Every `ProductUnit` maintains a timestamped history of events using standard C++ time libraries.
 
-## 🏗️ System Architecture |  
+---
+
+## 🏗️ System Architecture & Data Structures
 The system is divided into four main subsystems, each optimized for performance:
 
 ### 1. Orders Management 
-* **Data Structures:** `std::list` & `std::unordered_map`.
-* **Logic:** Orders are stored in a list for flexible insertion (VIP/Urgent orders). The hash map provides $O(1)$ access for instant searching and status updates.
+* **Structures:** `std::list` & `std::unordered_map`.
+* **Logic:** Optimized for $O(1)$ lookup and $O(1)$ insertion of Urgent/VIP orders into the pending list.
 
 ### 2. Production Floor 
-* **Data Structures:** `std::vector<std::priority_queue<Order>>`.
-* **Logic:** Multiple production lines are managed. Each line uses a **Priority Queue** to ensure high-priority orders (e.g., medical or urgent requests) are processed first.
+* **Structures:** `std::vector<std::priority_queue<Order>>`.
+* **Logic:** Multi-line processing where each line operates as a **Max-Heap**, ensuring critical orders are never delayed.
 
 ### 3. Warehouse & Inventory 
-* **Data Structures:** `std::deque` & `std::map`.
-* **Logic:** Raw materials are managed using a Double-Ended Queue for efficient $O(1)$ supply flow. Inventory counts are tracked for fast auditing.
+* **Structures:** `std::deque` & `std::map`.
+* **Logic:** Uses a Double-Ended Queue for raw material flow and a map for fast auditing of inventory levels.
 
-### 4. Tracking & History 
-* **Data Structures:** `std::vector<Event>` within each `ProductUnit`.
-* **Logic:** Every unit produced carries its own history, recording every stage, delay, or line breakdown it encountered.
+### 4. Shipping & Logistics 
+* **Structures:** `std::priority_queue`.
+* **Logic:** A dedicated global queue that receives finished products and organizes them for dispatch based on client priority.
+
+
+
+---
+
+
+---
+
+## 🛠️ Build & Run (Linux/Arch)
+Since the system is now cross-platform, you can compile it easily using `g++`:
+
+
+cd FactoryManager
+
+
+g++ -std=c++17 -o FactoryApp *.cpp
+
+
+./FactoryApp
+
+## Run in terminal:
+cd ~/Desktop/University/Projects/Factory-Simulation-System/FactoryManager && rm -f FactoryApp && g++ -std=c++17 -o FactoryApp *.cpp && ./FactoryApp
 
 ---
 
 ## 🚨 Emergency Handling |  
 One of the core features is the **Line Breakdown Recovery**:
 * When a line fails, the system automatically redistributes its `priority_queue` to other active lines while maintaining the priority order of all units.
+---
 
 ---
 
-## 📁 Project Structure | 
-* `/src`: Source code files (.cpp, .h).
-* `/docs`: Engineering report, UML diagrams, and documentation.
-* `/data`: Initial seed data for the factory state.
+## 🚨 Emergency Logic
+
+The system features a Greedy Load Balancer for breakdowns:
+
+Detects line failure.
+
+Extracts all pending orders.
+
+Scans active lines to find the one with the minimum load.
+
+Moves overflow to the Emergency Line if standard lines exceed capacity.
+
+---
+
+## 📁 Project Structure
+
+* **`/FactoryManager`**: Core source code (`.cpp`, `.h`).
+
+* **`.vscode/`**: Environment configurations for Arch Linux & Windows.
+
+* **`docs/`**: Engineering report and UML diagrams.
 
 ---
 ## 🧐 Class Diagram |
@@ -45,8 +92,20 @@ One of the core features is the **Line Breakdown Recovery**:
 
 ---
 
-## 👥 Team | فريق العمل
-* **Mahmoud Al-Kowatli** (Project Lead)
+---
+
+## 🛠️ Technical Implementation Details
+
+* **Conditional Compilation:** Used `#ifdef _WIN32` to ensure the system is portable across different OS environments.
+
+* **Input Validation:** Implemented a robust `checkIfNumber` system with `try-catch` blocks to prevent runtime crashes from invalid user inputs.
+
+* **Resource Management:** Optimized the consumption of materials using `WarehouseManager` before starting any production line.
+
+---
+
+## 👥 Team | 
+* **Mahmoud Al-Kowatli** (Project Lead & Linux Integration)
 * **GhaithSalloum1**
 * **HussamAdinAlKayyal**
 * **MajedAnka** 
