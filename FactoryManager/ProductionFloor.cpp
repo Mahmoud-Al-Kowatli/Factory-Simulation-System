@@ -59,7 +59,7 @@ void ProductionFloor::processNextOrder(int lineID) {
             unit.addEvent(event.getID());
             activeUnits[unit.getID()] = unit;
         }
-        
+        processedOrders.push_back(topOrder);
         cout << "Processing Unit: " << topOrder.getID() << " on line " << lineID << endl;
     }
 }
