@@ -68,3 +68,37 @@ void WarehouseManager::addMaterial(Material material, int count)
 	for (int i = 0; i < count; i++)
 		addMaterial(material);
 }
+
+void WarehouseManager::addFinishedProductUnits(const unordered_map<int, ProductUnit>& units)
+{
+	Event event("Finished.");
+	finishedGoods = units;
+	for (auto& p : finishedGoods)
+		p.second.addEvent(event.getID());
+}
+
+void WarehouseManager::showMaterials()
+{
+	Material::traverse([](Material material) {
+		int materialID = material.getID();
+		if (storageBins[materialID].empty())
+		{
+			cout << "The warehouse doesn't have any unit of " << material.getName() << endl;
+			return;
+		}
+		cout << materialID << ") " << material.getName() << endl;
+		cout << "---------------------------------------------\n";
+		int count = 0;
+		for (const Material& p : storageBins[materialID])
+		{
+			cout << "\tBox number: " << ++count << " has " << p.getQuantity() << endl;
+		}
+		cout << "---------------------------------------------\n\n";
+		});
+}
+
+void WarehouseManager::traverseOnFinishedGoods(void(*function)(ProductUnit&))
+{
+	for (pair<int, ProductUnit> p : finishedGoods)
+		function(p.second);
+}

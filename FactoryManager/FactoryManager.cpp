@@ -1,6 +1,6 @@
 #include "FactoryManager.h"
 
-void pressAnyButtonToContinue() {
+void FactoryManager::pressAnyButtonToContinue() {
     cout << "\nPress any button to continue....";
     system("pause>0");
     system("cls");
@@ -147,6 +147,43 @@ void FactoryManager::buyMaterial()
     cout << "You ordered number of boxes: " << requiredNumber << " of material '" << m.getName() << "'\nTotal quantity: " << requiredNumber * m.getQuantity();
 }
 
+void FactoryManager::prepareForShipping()
+{
+    if (!ProductionFloor::tryLoadForShipping())
+    {
+        cout << "Nothing to go for shipping";
+        return;
+    }
+    cout << "Prepared for shipping successfully";
+}
+
+void FactoryManager::shipping()
+{
+    Order o;
+    if (!OrdersManager::tryGetTopOrderReadyForShipping(o))
+    {   
+        cout << "No product for shipping!";
+        return;
+    }
+    cout << "---------------------------------------\n";
+    cout << "Order ID: " << o.getID() << endl;
+    cout << "Applicant client: " << o.getClient().getName() << endl;
+    cout << "The product: " << o.getProduct().getPrice() << endl;
+    cout << "The required quantity: " << o.getRequiredQuantity() << endl;
+    cout << "---------------------------------------\n";
+    cout << "Do you want to ship right now or no (1 for yes, 2 for no): ";
+    int choice = checkIfNumber(1, 2);
+    if (choice == 2)
+        return;
+    OrdersManager::shipTopOrder();
+    cout << "\n\nShipping done successfully!";
+}
+
+void FactoryManager::displayProductUnitsReadyForShipping()
+{
+    ProductionFloor::showActiveUnits();
+}
+
 void FactoryManager::startProduction()
 {
     while (true)
@@ -158,10 +195,13 @@ void FactoryManager::startProduction()
         cout << "3- Buy materials" << endl;
         cout << "4- Display production floor statues" << endl;
         cout << "5- Process next order" << endl;
-        cout << "6- Return to main menu" << endl;
+        cout << "6- Show how much materials in warehouse" << endl;
+        cout << "7- Display products that are ready for shipping" << endl;
+        cout << "8- Do the shipping" << endl;
+        cout << "9- Return to main menu" << endl;
         cout << "\n================================================================\n";
         int UserChoice;
-        UserChoice = checkIfNumber(1, 6);
+        UserChoice = checkIfNumber(1, 9);
         system("cls");
         switch (UserChoice)
         {
@@ -186,6 +226,18 @@ void FactoryManager::startProduction()
             pressAnyButtonToContinue();
             break;
         case 6:
+            showMaterialsInWarehouse();
+            pressAnyButtonToContinue();
+            break;
+        case 7:
+            displayProductUnitsReadyForShipping();
+            pressAnyButtonToContinue();
+            break;
+        case 8:
+            shipping();
+            pressAnyButtonToContinue();
+            break;
+        case 9:
             return;
         default:
             break;
@@ -206,6 +258,11 @@ void FactoryManager::handleLineBreakdown()
 	ProductionFloor::handleLineBreakdown(Line);
     cout << "Sucess! the products were moved to the Emergency line and will be handeled there";
     pressAnyButtonToContinue();
+}
+
+void FactoryManager::showMaterialsInWarehouse()
+{
+    WarehouseManager::showMaterials();
 }
 
 int FactoryManager::choosingProductID()
@@ -302,6 +359,7 @@ void FactoryManager::editOrder()
         order.setQuantity(newQuantity);
         cout << "the new price of your order: " << order.getTotalValue() << endl;
     }
+    OrdersManager::changeOrder(order);
 }
 
 void FactoryManager::showHistory()

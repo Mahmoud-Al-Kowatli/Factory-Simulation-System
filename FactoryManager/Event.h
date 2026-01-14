@@ -16,11 +16,11 @@ public:
 
     Event(string desc);
 
-    int getID();
+    int getID() const;
    
     string getDescription();
 
-    time_t getTimestamp();
+    time_t getTimestamp() const;
 
     static bool tryGetEvent(Event& event, int id);
 

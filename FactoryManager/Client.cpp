@@ -48,7 +48,7 @@ void Client::traverse(void(*function)(Client))
 
 int Client::getClientsNumber()
 {
-    return clientsDatabase.size();
+    return (int)clientsDatabase.size();
 }
 
 Client Client::getClient(int ID)

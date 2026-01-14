@@ -8,6 +8,9 @@ class ProductionFloor
     static vector<priority_queue<Order>> lines;
     static unordered_map<int, ProductUnit> activeUnits;
     static int emergencyLineIndex;
+    static vector<Order> processedOrders;
+    static void loadOrdersForShipping();
+    static void loadProductUnitForShipping();
 
 public:
     static void setNumberOfLines(int linesNum);
@@ -19,4 +22,6 @@ public:
     static void processNextOrder(int lineID);
     static int findBestAvailableLine(int excludedLine);
     static void displayStatus();
+    static bool tryLoadForShipping();
+    static void showActiveUnits();
 };

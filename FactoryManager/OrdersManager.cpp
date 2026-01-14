@@ -1,4 +1,5 @@
 #include "OrdersManager.h"
+#include "WarehouseManager.h"
 
 unordered_map<int, Order> OrdersManager::ordersDatabase = {};
 unordered_map<int, list<Order>::iterator> OrdersManager::receptionIndex = {};
@@ -113,5 +114,43 @@ void OrdersManager::traverse(void(*function)(Order))
 
 int OrdersManager::getOrdersNumber()
 {
-	return ordersDatabase.size();
+	return (int)ordersDatabase.size();
+}
+
+void OrdersManager::saveOrdersForShipping(vector<Order>& orders)
+{
+	for (Order& order : orders)
+		shippingQueue.push(order);
+}
+
+void OrdersManager::changeOrder(Order order)
+{
+	if (receptionIndex.find(order.getID()) != receptionIndex.end())
+	{
+		*receptionIndex[order.getID()] = order;
+		ordersDatabase[order.getID()] = order;
+	}
+}
+
+bool OrdersManager::tryGetTopOrderReadyForShipping(Order& order)
+{
+	if (!shippingQueue.size())
+		return false;
+	order = shippingQueue.top();
+	return true;
+}
+
+void OrdersManager::addDeliveredEvent(ProductUnit& p)
+{
+	if (p.getParentOrderID() == shippingQueue.top().getID())
+	{
+		Event e("Product with id of: " + to_string(p.getID()) + " was delivered");
+		p.addEvent(e.getID());
+	}
+}
+
+void OrdersManager::shipTopOrder()
+{
+	WarehouseManager::traverseOnFinishedGoods(addDeliveredEvent);
+	shippingQueue.pop();
 }

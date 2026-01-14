@@ -29,7 +29,7 @@ Order::Order() {
 }
 
 
-double Order::calculateValue() {
+double Order::calculateValue() const {
     switch (priority)
     {
     case Order::NORMAL:
@@ -44,9 +44,10 @@ double Order::calculateValue() {
     default:
         break;
     }
+    return productPrice * requiredQuantity;
 }
 
-void Order::printOrder() {
+void Order::printOrder() const {
     cout << "==============================================\n";
     cout << "Order ID: " << id << endl;
     cout << "Client ID: " << clientID << endl;
@@ -78,7 +79,7 @@ bool Order::operator<(const Order& other) const {
 
 // getters&setters
 
-Order::Priority Order::getPriority() {
+Order::Priority Order::getPriority() const {
     return priority;
 }
 
@@ -86,33 +87,33 @@ void Order::setPriority(Priority p) {
     priority = p;
 }
 
-Product Order::getProduct()
+Product Order::getProduct() const
 {
     return Product::getProduct(productID);
 }
 
-int Order::getProductID()
+int Order::getProductID() const
 {
     return productID;
 }
 
-int Order::getRequiredQuantity()
+int Order::getRequiredQuantity() const
 {
     return requiredQuantity;
 }
 
-int Order::getID() {
-
+int Order::getID() const 
+{
     return id;
 }
 
 
-int Order::getClientID()
+int Order::getClientID() const
 {
     return clientID;
 }
 
-Client Order::getClient()
+Client Order::getClient() const
 {
     return Client::getClient(clientID);
 }
@@ -123,7 +124,7 @@ void Order::setQuantity(int newQuantity)
     totalValue = calculateValue();
 }
 
-double Order::getTotalValue()
+double Order::getTotalValue() const
 {
     return totalValue;
 }

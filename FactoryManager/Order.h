@@ -20,7 +20,7 @@ private:
     Priority priority;
 
 public:
-    double calculateValue();
+    double calculateValue() const;
 
     bool operator<(const Order& other) const;
     
@@ -29,27 +29,27 @@ public:
 
     Order();
 
-    int getID();
+    int getID() const;
 
-    Priority getPriority();
+    Priority getPriority() const;
 
     void setPriority(Priority p);
 
-    Product getProduct();
+    Product getProduct() const;
 
-    int getProductID();
+    int getProductID() const;
 
-    int getRequiredQuantity();
+    int getRequiredQuantity() const;
 
-    int getClientID();
+    int getClientID() const;
 
-    Client getClient();
+    Client getClient() const;
 
-    void printOrder();
+    void printOrder() const;
 
     void setQuantity(int newQuantity);
 
-	double getTotalValue();
+	double getTotalValue() const;
 
     vector<pair<Material,int>> getTotalRequiredMaterials();
 

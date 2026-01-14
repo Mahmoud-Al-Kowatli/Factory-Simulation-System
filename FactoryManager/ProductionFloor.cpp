@@ -1,10 +1,14 @@
 #include"ProductionFloor.h"
+#include"OrdersManager.h"
+#include"WarehouseManager.h"
 
 vector<priority_queue<Order>> ProductionFloor::lines = {};
 
 unordered_map<int, ProductUnit> ProductionFloor::activeUnits = {};
 
 int ProductionFloor::emergencyLineIndex = 0;
+
+vector<Order> ProductionFloor::processedOrders = {};
 
 void ProductionFloor::setNumberOfLines(int linesNum)
 {
@@ -25,7 +29,7 @@ void ProductionFloor::getLines()
 
 int ProductionFloor::getNoOfLines()
 {
-    return lines.size();
+    return (int)lines.size();
 }
 
 
@@ -101,7 +105,7 @@ int ProductionFloor::findBestAvailableLine(int excludedLine) {
     for (int i = 0; i < lines.size(); i++) {
         if (i != excludedLine && i != emergencyLineIndex) {
             if (lines[i].size() < minOrders) {
-                minOrders = lines[i].size();
+                minOrders = (int)lines[i].size();
                 bestLine = i;
             }
         }
@@ -126,4 +130,42 @@ void ProductionFloor::displayStatus() {
         }
     }
     cout << "==================================================================\n" << endl;
+}
+
+void ProductionFloor::loadOrdersForShipping()
+{
+    OrdersManager::saveOrdersForShipping(processedOrders);
+    processedOrders.clear();
+}
+
+void ProductionFloor::loadProductUnitForShipping()
+{
+    WarehouseManager::addFinishedProductUnits(activeUnits);
+    activeUnits.clear();
+}
+
+bool ProductionFloor::tryLoadForShipping()
+{
+    if (!processedOrders.size() || !activeUnits.size())
+        return false;
+    loadProductUnitForShipping();
+    loadOrdersForShipping();
+    return true;
+}
+
+void ProductionFloor::showActiveUnits()
+{
+    if (!activeUnits.size())
+    {
+        cout << "No units ready for shipping!\n";
+        return;
+    }
+    for (const pair<int, ProductUnit>& unit : activeUnits)
+    {
+        cout << "--------------------------------------------\n";
+        cout << "Unit ID: " << unit.first << endl;
+        cout << "Order ID: " << unit.second.getParentOrderID() << endl;
+        cout << "Product Name: " << unit.second.getProduct().getName() << endl;
+        cout << "--------------------------------------------\n\n";
+    }
 }

@@ -18,7 +18,7 @@ Event::~Event()
 {
 }
 
-int Event::getID()
+int Event::getID() const
 {
     return id;
 }
@@ -28,7 +28,7 @@ string Event::getDescription()
     return description;
 }
 
-time_t Event::getTimestamp()
+time_t Event::getTimestamp() const
 {
     return timestamp;
 }

@@ -17,4 +17,7 @@ public:
     static bool consumeMaterialsForOrder(Order order);
     static void addMaterial(Material material);
     static void addMaterial(Material material, int count);
+    static void addFinishedProductUnits(const unordered_map<int, ProductUnit>& units);
+    static void showMaterials();
+    static void traverseOnFinishedGoods(void(*function)(ProductUnit&));
 };

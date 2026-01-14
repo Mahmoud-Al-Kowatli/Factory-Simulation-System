@@ -16,9 +16,10 @@ private:
 public:
     ProductUnit();
     ProductUnit(int parentOrderID, int productID);
-    int getID();
-    int getProductID();
-    int getParentOrderID();
+    int getID() const;
+    int getProductID() const;
+    int getParentOrderID() const;
+    Product getProduct() const;
     void addEvent(int eventID);
     void showProductUnitEvents();
     void finish();

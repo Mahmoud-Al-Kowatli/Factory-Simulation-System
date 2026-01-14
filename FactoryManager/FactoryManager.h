@@ -6,6 +6,7 @@
 
 class FactoryManager
 {
+	static void pressAnyButtonToContinue();
 	static void addOrder();
 	static void editOrder();
 	static void printOrderDetailsForEditOrDelete(Order order);
@@ -18,8 +19,12 @@ class FactoryManager
 	static int checkIfNumber(int x, int y);
 	static void startProduction();
 	static void handleLineBreakdown();
+	static void showMaterialsInWarehouse();
 	static void registerOrder();
 	static void buyMaterial();
+	static void prepareForShipping();
+	static void shipping();
+	static void displayProductUnitsReadyForShipping();
 	static Order::Priority setPriority();
 
 public:

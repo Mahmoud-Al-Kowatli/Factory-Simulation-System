@@ -11,17 +11,22 @@ void ProductUnit::addEvent(int eventID)
         historyIDs.push_back(eventID);
 }
 
-int ProductUnit::getID()
+Product ProductUnit::getProduct() const
+{
+    return Product::getProduct(productID);
+}
+
+int ProductUnit::getID() const
 {
     return unitID;
 }
 
-int ProductUnit::getProductID()
+int ProductUnit::getProductID() const
 {
     return productID;
 }
 
-int ProductUnit::getParentOrderID()
+int ProductUnit::getParentOrderID() const
 {
     return parentOrderID;
 }
