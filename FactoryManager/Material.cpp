@@ -66,5 +66,5 @@ void Material::traverse(void(*function)(Material))
 
 int Material::getMaterialsNumber()
 {
-	return materialDatabase.size();
+	return (int)materialDatabase.size();
 }

@@ -1,6 +1,6 @@
 #include "FactoryManager.h"
 
-void pressAnyButtonToContinue() {
+void FactoryManager::pressAnyButtonToContinue() {
 cout << "\nPress Enter to continue....";
 
     #ifdef _WIN32

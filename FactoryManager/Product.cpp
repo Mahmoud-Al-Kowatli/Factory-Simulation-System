@@ -69,5 +69,5 @@ bool Product::isFound(int id)
 
 int Product::getProductsNumber()
 {
-	return productDatabase.size();
+	return (int)productDatabase.size();
 }
