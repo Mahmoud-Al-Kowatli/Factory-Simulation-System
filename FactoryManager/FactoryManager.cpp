@@ -1,11 +1,24 @@
 #include "FactoryManager.h"
 
-void FactoryManager::pressAnyButtonToContinue() {
-    cout << "\nPress any button to continue....";
-    system("pause>0");
-    system("cls");
-}
+void pressAnyButtonToContinue() {
+cout << "\nPress Enter to continue....";
 
+    #ifdef _WIN32
+        // Code just fo Windows User 
+        // Handling system commands for different Operating Systems:
+        // Windows uses 'pause' and 'cls'
+        // Linux (Arch) uses 'cin.get' and 'clear'
+        
+        system("pause>0");
+        system("cls");
+    #else
+        // Code just for  Linux User (Arch) and other distro Linux 
+        // Clear input buffer and wait for Enter key on Linux
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.get();
+        system("clear");
+    #endif
+}
 void FactoryManager::printOrderDetailsForEditOrDelete(Order order)
 {
     cout << "\n================================================================\n";
@@ -202,7 +215,11 @@ void FactoryManager::startProduction()
         cout << "\n================================================================\n";
         int UserChoice;
         UserChoice = checkIfNumber(1, 9);
-        system("cls");
+                #ifdef _WIN32
+            #define CLEAR_SCREEN "cls"
+        #else
+            #define CLEAR_SCREEN "clear"
+        #endif
         switch (UserChoice)
         {
         case 1:
@@ -256,7 +273,7 @@ void FactoryManager::handleLineBreakdown()
     }
 
 	ProductionFloor::handleLineBreakdown(Line);
-    cout << "Sucess! the products were moved to the Emergency line and will be handeled there";
+    cout << "Success! the products were moved to the Emergency line and will be handeled there";
     pressAnyButtonToContinue();
 }
 
@@ -393,7 +410,11 @@ void FactoryManager::seedInitialData()
 void FactoryManager::runSimulation()
 {
     seedInitialData();
-	system("cls");
+        #ifdef _WIN32
+            #define CLEAR_SCREEN "cls"
+        #else
+            #define CLEAR_SCREEN "clear"
+        #endif
     cout << "Welcome" << endl;
     
     while (true)
@@ -410,7 +431,11 @@ void FactoryManager::runSimulation()
         int UserChoice;
         UserChoice = checkIfNumber(1, 6);
 
-            system("cls");
+        #ifdef _WIN32
+            #define CLEAR_SCREEN "cls"
+        #else
+            #define CLEAR_SCREEN "clear"
+        #endif
         switch (UserChoice)
         {
         case 1:
