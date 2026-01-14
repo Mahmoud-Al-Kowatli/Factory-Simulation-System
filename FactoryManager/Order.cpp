@@ -1,4 +1,3 @@
-#pragma once
 #include"Libraries.h"
 #include "Order.h"
 #include "ProductUnit.h"
@@ -64,9 +63,18 @@ void Order::printOrder() const {
     else if (priority == URGENT) {
         cout << "Urgent" << endl;
     }
-	char timeBuffer[26];
-    ctime_s(timeBuffer, sizeof(timeBuffer), &arrivalTime);
-    cout << "Arrival Time: " << timeBuffer;
+    // [Cross-Platform Compatibility] 
+    // We use preprocessor directives to handle time string formatting 
+    // because ctime_s is Microsoft-specific, while ctime is standard.
+    #ifdef _WIN32
+        char timeBuffer[26];
+        ctime_s(timeBuffer, sizeof(timeBuffer), &arrivalTime);
+        cout << "Arrival Time: " << timeBuffer;
+    #else
+        // Standard C++ for Linux (Arch) and macOS
+        char* timeStr = ctime(&arrivalTime);
+        cout << "Arrival Time: " << timeStr;
+    #endif
     cout << "==============================================\n";
 }
 
