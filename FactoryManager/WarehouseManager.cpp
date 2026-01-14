@@ -72,10 +72,12 @@ void WarehouseManager::addMaterial(Material material, int count)
 
 void WarehouseManager::addFinishedProductUnits(const unordered_map<int, ProductUnit>& units)
 {
-	Event event("Finished.");
 	finishedGoods = units;
 	for (auto& p : finishedGoods)
+	{
+		Event event(p.second.getProduct().getName() + " from order of id: " + to_string(p.second.getParentOrderID()) + " finished.");
 		p.second.addEvent(event.getID());
+	}
 }
 
 void WarehouseManager::showMaterials()

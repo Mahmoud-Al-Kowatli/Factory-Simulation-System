@@ -427,7 +427,9 @@ void FactoryManager::runSimulation()
         #else
             #define CLEAR_SCREEN "clear"
         #endif
-    cout << "Welcome" << endl;
+    cout << "+-------+" << endl;
+    cout << "|Welcome|" << endl;
+    cout << "+-------+" << endl;
     
     while (true)
     {

@@ -37,7 +37,7 @@ int ProductionFloor::getNoOfLines()
 void ProductionFloor::assignOrder(int linID ,Order o){
     if (linID >= 0 && linID < lines.size()){
         lines[linID].push(o);
-        cout<<"Order " << o.getID() << " assigned to line "<< linID <<endl;
+        cout << "Order " << o.getID() << " assigned to line "<< linID <<endl;
     }
     else{
         cout << "Error Line ID out of bounds\n";
@@ -48,14 +48,13 @@ void ProductionFloor::processNextOrder(int lineID) {
     if (lineID >= 0 && lineID < lines.size() && !lines[lineID].empty()) {
         Order topOrder = lines[lineID].top();
         lines[lineID].pop();
-
-        Event event("Production started.");
         vector<ProductUnit> vUnits;
 
         int rq = topOrder.getRequiredQuantity();
         for (int i = 0; i < rq; i++)
         {
             ProductUnit unit(topOrder.getID(), topOrder.getProductID());
+            Event event(unit.getProduct().getName() + " from order with id of: " + to_string(unit.getParentOrderID()) + " started to product.");
             unit.addEvent(event.getID());
             activeUnits[unit.getID()] = unit;
         }

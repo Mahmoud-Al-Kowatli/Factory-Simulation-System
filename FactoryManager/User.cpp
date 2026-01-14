@@ -23,7 +23,10 @@ void User::login()
 
         if (inputUsername == USERNAME && inputPassword == PASSWORD)
         {
+            system("cls");
 			cout << "Login successful!" << endl;
+            system("pause>0");
+            system("cls");
             FactoryManager::seedInitialData();
             FactoryManager::runSimulation();
         }
@@ -33,6 +36,6 @@ void User::login()
             cout << "Login failed please try again\n";
         }
 
-    } while (inputUsername != USERNAME && inputPassword != PASSWORD);
+    } while (inputUsername != USERNAME || inputPassword != PASSWORD);
 
 }

@@ -144,7 +144,7 @@ void OrdersManager::addDeliveredEvent(ProductUnit& p)
 {
 	if (p.getParentOrderID() == shippingQueue.top().getID())
 	{
-		Event e("Product with id of: " + to_string(p.getID()) + " was delivered");
+		Event e(p.getProduct().getName() + " from order with of: " + to_string(p.getParentOrderID()) + " was delivered");
 		p.addEvent(e.getID());
 	}
 }
