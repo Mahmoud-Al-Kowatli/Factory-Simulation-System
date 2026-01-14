@@ -86,11 +86,8 @@ int FactoryManager::checkIfNumber(int x, int y) // checks if a the input is numb
     return num;
 }
 
-void FactoryManager::registerOrder() {
-    
-    
-
-
+void FactoryManager::registerOrder() 
+{
     Order order;
     bool orderExists = OrdersManager::tryGetTopOrder(order);
 
@@ -102,7 +99,7 @@ void FactoryManager::registerOrder() {
         return;
     }
     bool status = WarehouseManager::consumeMaterialsForOrder(order);
-    cout << "Next order is: [" << order.getID() << ", For the Client: " << order.getClient().getName() << endl;
+    cout << "Next order is: [" << order.getID() << "] For the Client: " << order.getClient().getName() << endl;
     order.printOrder();
 
     if (!status)
@@ -278,7 +275,7 @@ void FactoryManager::handleLineBreakdown()
     }
 
 	ProductionFloor::handleLineBreakdown(Line);
-    cout << "Success! the products were moved to the Emergency line and will be handeled there";
+    cout << "Success! the products were moved to the other line(s) and will be handled there";
     pressAnyButtonToContinue();
 }
 

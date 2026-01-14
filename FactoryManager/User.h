@@ -12,6 +12,6 @@ public:
 
 private:
     //static username&password 
-    const string USERNAME = "Admin";
-    const string PASSWORD = "Admin123";
+    const string USERNAME = "admin";
+    const string PASSWORD = "admin123";
 };

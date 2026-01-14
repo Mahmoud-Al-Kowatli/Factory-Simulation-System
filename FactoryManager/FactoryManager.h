@@ -22,7 +22,6 @@ class FactoryManager
 	static void showMaterialsInWarehouse();
 	static void registerOrder();
 	static void buyMaterial();
-	static void printOrderEvents();
 	static void prepareForShipping();
 	static void shipping();
 	static void displayProductUnitsReadyForShipping();

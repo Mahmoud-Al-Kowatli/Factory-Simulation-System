@@ -14,7 +14,6 @@ void ProductionFloor::setNumberOfLines(int linesNum)
 {
     if (linesNum < 2) linesNum = 2;
     lines.resize(linesNum);
-    emergencyLineIndex = linesNum - 1;
 }
 
 void ProductionFloor::getLines()
