@@ -10,7 +10,7 @@ public:
 
 
 private:
-    //staic username&password 
+    //static username&password 
     string username = "Admin";
     string password = "Admin123";
 };

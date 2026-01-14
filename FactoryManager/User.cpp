@@ -1,6 +1,4 @@
-#pragma once
 #include"User.h"
-
 
 void User::login()
 {
@@ -17,8 +15,6 @@ void User::login()
         cout << "Login failed!" << endl;
     }
 }
-
-
 User::~User()
 {
 
