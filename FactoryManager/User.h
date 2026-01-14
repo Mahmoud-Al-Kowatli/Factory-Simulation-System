@@ -1,16 +1,17 @@
 #include"Libraries.h"
+#include"FactoryManager.h"
 
 class User
 {
 public:
 
-    ~User();
+    User();
 
     void login();
 
 
 private:
     //static username&password 
-    string username = "Admin";
-    string password = "Admin123";
+    const string USERNAME = "Admin";
+    const string PASSWORD = "Admin123";
 };

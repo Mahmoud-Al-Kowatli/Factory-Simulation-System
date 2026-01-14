@@ -1,6 +1,6 @@
-#include"FactoryManager.h"
+#include"User.h"
 
 int main()
 {
-	FactoryManager::runSimulation();
+	User user1;
 }
